@@ -1,0 +1,33 @@
+name: Publish Snapshot to Maven repositories
+
+on:
+  workflow_run:
+    workflows:
+      - Increment Build Number
+    types:
+      - completed
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Publish with Gradle
+        run: ./gradlew build publish
+        env:
+          GH_USERNAME: ${{ secrets.GH_USERNAME }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          FDD_USERNAME: ${{ secrets.FDD_USERNAME }}
+          FDD_TOKEN: ${{ secrets.FDD_TOKEN }}
+          MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
+          MAVEN_TOKEN: ${{ secrets.MAVEN_TOKEN }}
