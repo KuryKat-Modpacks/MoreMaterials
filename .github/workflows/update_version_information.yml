@@ -58,7 +58,7 @@ jobs:
           git config user.email "$(git log -n 1 --pretty=format:%ae updates.json)"
           
           git pull
-          git diff --exit-code updates.json || (git add updates.json && git commit -m "[CHORE] Update Version Information")
+          git diff --exit-code updates.json || (git add updates.json && git commit -m "👷 Chore: Update Version Information")
           git push
         env:
           GIT_COMMITTER_NAME: github-actions[bot]
