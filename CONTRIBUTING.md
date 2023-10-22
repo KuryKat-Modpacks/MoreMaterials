@@ -40,7 +40,7 @@ We welcome contributions in the following areas:
 3. Create a new branch for your contribution.
 
    ```bash
-   git checkout -b <minecraft-version>/dev/<feature-name>
+   git checkout -b feat/<minecraft-version>/dev/<feature-name>
    ```
 
    **Rules for Branching:**
