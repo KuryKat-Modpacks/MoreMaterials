@@ -31,3 +31,4 @@ jobs:
           FDD_TOKEN: ${{ secrets.FDD_TOKEN }}
           MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
           MAVEN_TOKEN: ${{ secrets.MAVEN_TOKEN }}
+          MODDING_SECRETS: ${{ secrets.MODDING_SECRETS }}
