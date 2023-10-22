@@ -16,16 +16,23 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package dev.kurykat.morematerials.init;
+package dev.kurykat.morematerials.utils;
 
-import dev.kurykat.morematerials.Constants;
-import net.minecraft.core.Registry;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegistryObject;
 
-public class PlacedFeatureInit {
-    public static final DeferredRegister<PlacedFeature> PLACED_FEATURES = DeferredRegister.create(
-            Registry.PLACED_FEATURE_REGISTRY,
-            Constants.MOD_ID
-    );
+import java.util.ArrayList;
+
+public class RegistryUtils {
+
+    public static <T> RegistryObject<T> getRegistryObjectByName(
+            ArrayList<RegistryObject<T>> registryList,
+            String name
+    ) {
+        for (RegistryObject<T> registryObject : registryList) {
+            if (registryObject.getId().getPath().equals(name)) {
+                return registryObject;
+            }
+        }
+        return null;
+    }
 }

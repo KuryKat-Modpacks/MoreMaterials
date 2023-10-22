@@ -18,10 +18,10 @@
 
 package dev.kurykat.morematerials;
 
-import dev.kurykat.morematerials.init.BlockInit;
-import dev.kurykat.morematerials.init.ConfiguredFeatureInit;
-import dev.kurykat.morematerials.init.ItemInit;
-import dev.kurykat.morematerials.init.PlacedFeatureInit;
+import dev.kurykat.morematerials.init.MoreMaterialsBlockInit;
+import dev.kurykat.morematerials.init.MoreMaterialsConfiguredFeatureInit;
+import dev.kurykat.morematerials.init.MoreMaterialsItemInit;
+import dev.kurykat.morematerials.init.MoreMaterialsPlacedFeatureInit;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -31,9 +31,9 @@ public class MoreMaterials {
     public MoreMaterials() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ItemInit.ITEMS.register(modEventBus);
-        BlockInit.BLOCKS.register(modEventBus);
-        ConfiguredFeatureInit.CONFIGURED_FEATURES.register(modEventBus);
-        PlacedFeatureInit.PLACED_FEATURES.register(modEventBus);
+        MoreMaterialsItemInit.ITEMS.register(modEventBus);
+        MoreMaterialsBlockInit.BLOCKS.register(modEventBus);
+        MoreMaterialsConfiguredFeatureInit.CONFIGURED_FEATURES.register(modEventBus);
+        MoreMaterialsPlacedFeatureInit.PLACED_FEATURES.register(modEventBus);
     }
 }
