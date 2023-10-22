@@ -45,11 +45,11 @@ We welcome contributions in the following areas:
 
    **Rules for Branching:**
 
+    * ALWAYS develop under the feat/ branch
     * "\<minecraft-version>" needs to be the correct MC version, e.g. "1.19.2"
-    * ALWAYS develop under the /dev/ branch
     * \<feature-name> needs to be a valid feature name.
-        * e.g. "fix-\<issueID>", which would in the end be the branch "1.19.2/dev/fix-45"
-        * e.g. "cool-feature", which would in the end be the branch "1.19.2/dev/cool-feature"
+        * e.g. "fix-\<issueID>", which would in the end be the branch "feat/1.19.2/fix-45"
+        * e.g. "cool-feature", which would in the end be the branch "feat/1.19.2/cool-feature"
 
 4. Make your changes and commit them.
     * **Note:**
