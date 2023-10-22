@@ -18,8 +18,6 @@ jobs:
           incremented_value=$((property_value + 1))
           sed -i "s/^mod_build_numbers=.*/mod_build_numbers=$incremented_value/" gradle.properties
 
-        shell: bash
-
       - name: Commit Changes
         run: |
           git config user.name "$(git log -n 1 --pretty=format:%an gradle.properties)"
@@ -31,4 +29,3 @@ jobs:
         env:
           GIT_COMMITTER_NAME: github-actions[bot]
           GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
-        shell: bash
