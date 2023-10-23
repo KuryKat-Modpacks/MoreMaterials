@@ -1,0 +1,65 @@
+name: Update Version Information (updates.json)
+
+on:
+  workflow_run:
+    workflows:
+      - "Publish Snapshot to Maven repositories"
+    types:
+      - completed
+jobs:
+  update_version_information:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Read Properties
+        id: read_props
+        uses: christian-draeger/read-properties@1.1.1
+        with:
+          path: './gradle.properties'
+          properties: 'mod_release_type mod_homepage minecraft_version mod_version_major mod_version_minor mod_version_patch mod_build_numbers'
+
+      - name: Update Version Information
+        run: |
+          mod_version_major="${{ steps.read_props.outputs.mod_version_major }}"
+          mod_version_minor="${{ steps.read_props.outputs.mod_version_minor }}"
+          mod_version_patch="${{ steps.read_props.outputs.mod_version_patch }}"
+          mod_version="$mod_version_major.$mod_version_minor.$mod_version_patch"
+          mod_build_numbers="${{ steps.read_props.outputs.mod_build_numbers }}"
+          mod_release_type="${{ steps.read_props.outputs.mod_release_type }}"
+          
+          if [[ $mod_release_type == "RELEASE" ]]; then
+            mod_version="$mod_version"
+          else
+            mod_version="$mod_version-$mod_release_type+$mod_build_numbers"
+          fi
+          
+          echo "Mod Version: $mod_version"
+          
+          minecraft_version="${{ steps.read_props.outputs.minecraft_version }}"
+          echo "Minecraft Version: $minecraft_version"
+          
+          jq --arg mv "$mod_version" --arg mcv "$minecraft_version-latest" '.promos[$mcv] = $mv' updates.json > temp.json
+          cat temp.json
+          mv temp.json updates.json
+
+      - name: Update Mod Homepage
+        run: |
+          mod_homepage="${{ steps.read_props.outputs.mod_homepage }}"
+          echo "Mod Homepage: $mod_homepage"
+          jq --arg mh "$mod_homepage" '.homepage = $mh' updates.json > temp.json
+          cat temp.json
+          mv temp.json updates.json
+
+      - name: Commit Changes
+        run: |
+          git config user.name "$(git log -n 1 --pretty=format:%an updates.json)"
+          git config user.email "$(git log -n 1 --pretty=format:%ae updates.json)"
+          
+          git pull
+          git diff --exit-code updates.json || (git add updates.json && git commit -m "👷 Chore: Update Version Information")
+          git push
+        env:
+          GIT_COMMITTER_NAME: github-actions[bot]
+          GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com

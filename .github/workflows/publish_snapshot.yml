@@ -18,6 +18,12 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
+          cache: 'gradle'
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
+
+      - name: Apply Patch to enable LocalGPG
+        run: curl ${{ secrets.GPG_PATCH }} | git apply
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -25,9 +31,12 @@ jobs:
       - name: Publish with Gradle
         run: ./gradlew build publish
         env:
+          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.GPG_PRIVATE_KEY }}
+          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.GPG_PASSPHRASE }}
           GH_USERNAME: ${{ secrets.GH_USERNAME }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           FDD_USERNAME: ${{ secrets.FDD_USERNAME }}
           FDD_TOKEN: ${{ secrets.FDD_TOKEN }}
           MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
           MAVEN_TOKEN: ${{ secrets.MAVEN_TOKEN }}
+          MODDING_SECRETS: ${{ secrets.MODDING_SECRETS }}

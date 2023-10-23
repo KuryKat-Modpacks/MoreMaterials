@@ -44,11 +44,11 @@ sourcesJar {
     }
 
     from(rootProject.file('CHANGELOG.md')) {
-        rename { "${it -~ /...$/}_${mod_id}.md" }
+        rename { "${it - ~/...$/}_${mod_id}.md" }
     }
 
     from(rootProject.file('LunaAssets.md')) {
-        rename { "${it -~ /...$/}_${mod_id}.md" }
+        rename { "${it - ~/...$/}_${mod_id}.md" }
     }
 }
 
