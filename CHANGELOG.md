@@ -1,10 +1,10 @@
 # Changelog
 
-[![Keep a Changelog Logo](https://img.shields.io/badge/Keep%20a%20Changelog-72479d?logo=keepachangelog&logoColor=white
+[![Keep a Changelog Logo](https://img.shields.io/badge/Keep%20a%20Changelog-7851a9?logo=keepachangelog&logoColor=white
 )](https://keepachangelog.com)
-[![Semantic Versioning Logo](https://img.shields.io/badge/Semantic%20Versioning-72479d?logo=semver&logoColor=white
+[![Semantic Versioning Logo](https://img.shields.io/badge/Semantic%20Versioning-7851a9?logo=semver&logoColor=white
 )](https://semver.org)
-[![Conventional Commits Logo](https://img.shields.io/badge/Conventional%20Commits-72479d?logo=conventionalcommits&logoColor=white
+[![Conventional Commits Logo](https://img.shields.io/badge/Conventional%20Commits-7851a9?logo=conventionalcommits&logoColor=white
 )](https://conventionalcommits.org)
 
 All notable changes to this project will be documented in this file.
