@@ -36,5 +36,5 @@ jobs:
           git diff --exit-code gradle.properties || (git add gradle.properties && git commit -m "👷 Chore: Bump Build Numbers")
           git push
         env:
-          GIT_COMMITTER_NAME: github-actions[bot]
-          GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+          GIT_COMMITTER_NAME: KuryKat [BOT]
+          GIT_COMMITTER_EMAIL: 149154967+KuryKat-Bot@users.noreply.github.com
