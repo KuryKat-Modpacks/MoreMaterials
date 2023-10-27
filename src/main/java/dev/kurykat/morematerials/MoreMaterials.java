@@ -47,8 +47,8 @@ public class MoreMaterials {
         IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 
         MoreMaterialsTags.init();
-        MoreMaterialsBlocks.register();
         MoreMaterialsItems.register();
+        MoreMaterialsBlocks.register();
 
         MoreMaterialsConfiguredFeatures.CONFIGURED_FEATURES.register(modEventBus);
         MoreMaterialsPlacedFeatures.PLACED_FEATURES.register(modEventBus);
