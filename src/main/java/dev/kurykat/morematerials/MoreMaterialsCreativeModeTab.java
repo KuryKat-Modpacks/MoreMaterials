@@ -18,7 +18,7 @@
 
 package dev.kurykat.morematerials;
 
-import dev.kurykat.morematerials.init.MoreMaterialsItemInit;
+import dev.kurykat.morematerials.registries.MoreMaterialsItems;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -30,6 +30,6 @@ public class MoreMaterialsCreativeModeTab extends CreativeModeTab {
 
     @Override
     public @NotNull ItemStack makeIcon() {
-        return MoreMaterialsItemInit.RUBY.get().getDefaultInstance();
+        return MoreMaterialsItems.RUBY.get().getDefaultInstance();
     }
 }

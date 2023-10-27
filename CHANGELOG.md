@@ -17,10 +17,10 @@ and [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
 ### Added
 
-- Base Infrastructure for the mod, based around the latest Forge MDK.
-- Basic Constants that shall be used around the project.
-- Basic Init Classes for Blocks and Items.
-- Basic Automation for CI/CD with Automatic Snapshot Releases.
-- Basic Data Generator Classes for Block Models and BlockStates and Item Models.
+- Infrastructure for the mod, based around the latest Forge MDK.
+- Constants that will be used around the project.
+- Registry Classes for Blocks and Items.
+- Automation for CI/CD with Automatic Snapshot Releases.
+- Data Generator Classes for handling several kinds of files, such as block states, block/item models, lang files, etc.
 
 [Unreleased]: https://github.com/KuryKat-Modpacks/MoreMaterials/compare/HEAD...HEAD

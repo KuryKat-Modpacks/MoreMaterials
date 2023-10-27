@@ -16,23 +16,27 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package dev.kurykat.morematerials.utils;
+package dev.kurykat.morematerials.registries;
 
+import dev.kurykat.morematerials.MoreMaterialsConstants;
+import net.minecraft.world.item.Item;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.ArrayList;
+import java.util.function.Supplier;
 
-public class RegistryUtils {
+public class MoreMaterialsItems {
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MoreMaterialsConstants.MOD_ID);
+    public static final RegistryObject<Item> RUBY = register(
+            "ruby",
+            () -> new Item(
+                    MoreMaterialsConstants.DEFAULT_ITEM_PROPS
+            )
+    );
 
-    public static <T> RegistryObject<T> getRegistryObjectByName(
-            ArrayList<RegistryObject<T>> registryList,
-            String name
-    ) {
-        for (RegistryObject<T> registryObject : registryList) {
-            if (registryObject.getId().getPath().equals(name)) {
-                return registryObject;
-            }
-        }
-        return null;
+
+    private static <T extends Item> RegistryObject<T> register(String itemName, Supplier<T> itemSupplier) {
+        return ITEMS.register(itemName, itemSupplier);
     }
 }

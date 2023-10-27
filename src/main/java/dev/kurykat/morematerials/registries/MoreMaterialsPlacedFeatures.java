@@ -16,9 +16,9 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package dev.kurykat.morematerials.init;
+package dev.kurykat.morematerials.registries;
 
-import dev.kurykat.morematerials.Constants;
+import dev.kurykat.morematerials.MoreMaterialsConstants;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.placement.*;
@@ -27,16 +27,16 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
 
-public class MoreMaterialsPlacedFeatureInit {
+public class MoreMaterialsPlacedFeatures {
     public static final DeferredRegister<PlacedFeature> PLACED_FEATURES = DeferredRegister.create(
             Registry.PLACED_FEATURE_REGISTRY,
-            Constants.MOD_ID
+            MoreMaterialsConstants.MOD_ID
     );
 
     public static final RegistryObject<PlacedFeature> ORE_RUBY_OVERWORLD = PLACED_FEATURES.register(
             "ore_ruby_overworld",
             () -> new PlacedFeature(
-                    MoreMaterialsConfiguredFeatureInit.ORE_RUBY_OVERWORLD.getHolder().get(),
+                    MoreMaterialsConfiguredFeatures.ORE_RUBY_OVERWORLD.getHolder().get(),
                     commonOrePlacement(
                             4,
                             HeightRangePlacement.triangle(

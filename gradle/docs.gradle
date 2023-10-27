@@ -1,0 +1,20 @@
+def commonSources = [
+        'LICENSE',
+        'CHANGELOG.md',
+        'NOTICE',
+]
+
+tasks.withType(Jar).configureEach {
+    commonSources.forEach {
+        def fileName = it.replaceAll(/\..*?$/, '')
+        def fileExtension = it.replaceAll(/^.*?\./, '.')
+        from(rootProject.file(it)) {
+            if (fileExtension.startsWith('.')) {
+                rename { "${fileName}_${mod_id}${fileExtension}" }
+            } else {
+                rename { "${it}_${mod_id}" }
+            }
+        }
+    }
+}
+

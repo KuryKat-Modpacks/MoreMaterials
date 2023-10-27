@@ -18,22 +18,27 @@
 
 package dev.kurykat.morematerials;
 
-import dev.kurykat.morematerials.init.MoreMaterialsBlockInit;
-import dev.kurykat.morematerials.init.MoreMaterialsConfiguredFeatureInit;
-import dev.kurykat.morematerials.init.MoreMaterialsItemInit;
-import dev.kurykat.morematerials.init.MoreMaterialsPlacedFeatureInit;
+import dev.kurykat.morematerials.registries.MoreMaterialsBlocks;
+import dev.kurykat.morematerials.registries.MoreMaterialsConfiguredFeatures;
+import dev.kurykat.morematerials.registries.MoreMaterialsItems;
+import dev.kurykat.morematerials.registries.MoreMaterialsPlacedFeatures;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-@Mod(Constants.MOD_ID)
+@Mod(MoreMaterialsConstants.MOD_ID)
 public class MoreMaterials {
     public MoreMaterials() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        MoreMaterialsItemInit.ITEMS.register(modEventBus);
-        MoreMaterialsBlockInit.BLOCKS.register(modEventBus);
-        MoreMaterialsConfiguredFeatureInit.CONFIGURED_FEATURES.register(modEventBus);
-        MoreMaterialsPlacedFeatureInit.PLACED_FEATURES.register(modEventBus);
+        MoreMaterialsItems.ITEMS.register(modEventBus);
+        MoreMaterialsBlocks.BLOCKS.register(modEventBus);
+        MoreMaterialsConfiguredFeatures.CONFIGURED_FEATURES.register(modEventBus);
+        MoreMaterialsPlacedFeatures.PLACED_FEATURES.register(modEventBus);
+    }
+
+    public static ResourceLocation resourceLocation(String path) {
+        return new ResourceLocation(MoreMaterialsConstants.MOD_ID, path);
     }
 }

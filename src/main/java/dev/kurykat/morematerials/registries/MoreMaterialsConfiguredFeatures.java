@@ -16,10 +16,10 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package dev.kurykat.morematerials.init;
+package dev.kurykat.morematerials.registries;
 
 import com.google.common.base.Suppliers;
-import dev.kurykat.morematerials.Constants;
+import dev.kurykat.morematerials.MoreMaterialsConstants;
 import net.minecraft.core.Registry;
 import net.minecraft.data.worldgen.features.OreFeatures;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -31,21 +31,21 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class MoreMaterialsConfiguredFeatureInit {
+public class MoreMaterialsConfiguredFeatures {
     public static final DeferredRegister<ConfiguredFeature<?, ?>> CONFIGURED_FEATURES = DeferredRegister.create(
             Registry.CONFIGURED_FEATURE_REGISTRY,
-            Constants.MOD_ID
+            MoreMaterialsConstants.MOD_ID
     );
 
     private static final Supplier<List<OreConfiguration.TargetBlockState>> RUBY_OVERWORLD_REPLACEMENT = Suppliers.memoize(
             () -> List.of(
                     OreConfiguration.target(
                             OreFeatures.STONE_ORE_REPLACEABLES,
-                            MoreMaterialsBlockInit.RUBY_ORE.get().defaultBlockState()
+                            MoreMaterialsBlocks.RUBY_ORE.get().defaultBlockState()
                     ),
                     OreConfiguration.target(
                             OreFeatures.DEEPSLATE_ORE_REPLACEABLES,
-                            MoreMaterialsBlockInit.DEEPSLATE_RUBY_ORE.get().defaultBlockState()
+                            MoreMaterialsBlocks.DEEPSLATE_RUBY_ORE.get().defaultBlockState()
                     )
             )
     );

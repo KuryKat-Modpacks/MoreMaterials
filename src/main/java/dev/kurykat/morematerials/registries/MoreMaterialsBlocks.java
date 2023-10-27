@@ -16,9 +16,9 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package dev.kurykat.morematerials.init;
+package dev.kurykat.morematerials.registries;
 
-import dev.kurykat.morematerials.Constants;
+import dev.kurykat.morematerials.MoreMaterialsConstants;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -32,15 +32,12 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.ArrayList;
 import java.util.function.Supplier;
 
-public class MoreMaterialsBlockInit {
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Constants.MOD_ID);
-    public static final ArrayList<RegistryObject<Block>> SIMPLE_BLOCKS = new ArrayList<>();
-    public static final ArrayList<RegistryObject<Block>> ORE_BLOCKS = new ArrayList<>();
+public class MoreMaterialsBlocks {
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MoreMaterialsConstants.MOD_ID);
 
-    public static final RegistryObject<Block> RUBY_ORE = registerOreBlockWithItem(
+    public static final RegistryObject<Block> RUBY_ORE = register(
             "ruby_ore",
             () -> new DropExperienceBlock(
                     BlockBehaviour.Properties
@@ -49,10 +46,10 @@ public class MoreMaterialsBlockInit {
                             .requiresCorrectToolForDrops(),
                     UniformInt.of(3, 7)
             ),
-            Constants.DEFAULT_ITEM_PROPS
+            MoreMaterialsConstants.DEFAULT_ITEM_PROPS
     );
 
-    public static final RegistryObject<Block> DEEPSLATE_RUBY_ORE = registerOreBlockWithItem(
+    public static final RegistryObject<Block> DEEPSLATE_RUBY_ORE = register(
             "deepslate_ruby_ore",
             () -> new DropExperienceBlock(
                     BlockBehaviour.Properties
@@ -62,10 +59,10 @@ public class MoreMaterialsBlockInit {
                             .sound(SoundType.DEEPSLATE),
                     UniformInt.of(3, 7)
             ),
-            Constants.DEFAULT_ITEM_PROPS
+            MoreMaterialsConstants.DEFAULT_ITEM_PROPS
     );
 
-    public static final RegistryObject<Block> RUBY_BLOCK = registerSimpleBlockWithItem(
+    public static final RegistryObject<Block> RUBY_BLOCK = register(
             "ruby_block",
             () -> new Block(
                     BlockBehaviour.Properties
@@ -74,22 +71,12 @@ public class MoreMaterialsBlockInit {
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.METAL)
             ),
-            Constants.DEFAULT_ITEM_PROPS
+            MoreMaterialsConstants.DEFAULT_ITEM_PROPS
     );
 
-    private static <T extends Block> RegistryObject<T> registerSimpleBlockWithItem(String blockName, Supplier<T> blockSupplier, Item.Properties itemProperties) {
+    private static <T extends Block> RegistryObject<T> register(String blockName, Supplier<T> blockSupplier, Item.Properties itemProperties) {
         RegistryObject<T> block = BLOCKS.register(blockName, blockSupplier);
-        SIMPLE_BLOCKS.add((RegistryObject<Block>) block);
-        RegistryObject<Item> item = MoreMaterialsItemInit.ITEMS.register(blockName, () -> new BlockItem(block.get(), itemProperties));
-        MoreMaterialsItemInit.SIMPLE_ITEMS.add(item);
-        return block;
-    }
-
-    private static <T extends Block> RegistryObject<T> registerOreBlockWithItem(String blockName, Supplier<T> blockSupplier, Item.Properties itemProperties) {
-        RegistryObject<T> block = BLOCKS.register(blockName, blockSupplier);
-        ORE_BLOCKS.add((RegistryObject<Block>) block);
-        RegistryObject<Item> item = MoreMaterialsItemInit.ITEMS.register(blockName, () -> new BlockItem(block.get(), itemProperties));
-        MoreMaterialsItemInit.SIMPLE_ITEMS.add(item);
+        MoreMaterialsItems.ITEMS.register(blockName, () -> new BlockItem(block.get(), itemProperties));
         return block;
     }
 }
