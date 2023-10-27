@@ -18,22 +18,38 @@
 
 package dev.kurykat.morematerials;
 
+import com.tterrag.registrate.Registrate;
+import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import dev.kurykat.morematerials.registries.MoreMaterialsBlocks;
 import dev.kurykat.morematerials.registries.MoreMaterialsConfiguredFeatures;
 import dev.kurykat.morematerials.registries.MoreMaterialsItems;
 import dev.kurykat.morematerials.registries.MoreMaterialsPlacedFeatures;
+import dev.kurykat.morematerials.tags.MoreMaterialsTags;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(MoreMaterialsConstants.MOD_ID)
 public class MoreMaterials {
-    public MoreMaterials() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    private static final NonNullSupplier<Registrate> REGISTRATE = NonNullSupplier.lazy(() -> Registrate.create(MoreMaterialsConstants.MOD_ID));
 
-        MoreMaterialsItems.ITEMS.register(modEventBus);
-        MoreMaterialsBlocks.BLOCKS.register(modEventBus);
+    public static Registrate getRegistrate() {
+        return REGISTRATE.get();
+    }
+
+    public MoreMaterials() {
+        MoreMaterialsConstants.LOGGER.info("{} is Starting! Hello World!", MoreMaterialsConstants.MOD_NAME);
+        ModLoadingContext modLoadingContext = ModLoadingContext.get();
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
+
+        MoreMaterialsTags.init();
+        MoreMaterialsBlocks.register();
+        MoreMaterialsItems.register();
+
         MoreMaterialsConfiguredFeatures.CONFIGURED_FEATURES.register(modEventBus);
         MoreMaterialsPlacedFeatures.PLACED_FEATURES.register(modEventBus);
     }

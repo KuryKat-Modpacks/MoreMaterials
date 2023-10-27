@@ -11,10 +11,9 @@ updateJSONURL="https://raw.githubusercontent.com/KuryKat-Modpacks/${mod_id}/${mi
 displayURL="${mod_homepage}"
 logoFile="${mod_id}_banner.png"
 logoBlur=false
-credits="${mod_credits}"
 authors="${mod_author}"
 displayTest="MATCH_VERSION"
-itemIcon="minecraft:feather"
+itemIcon="${mod_id}:ruby"
 
 description='''
 

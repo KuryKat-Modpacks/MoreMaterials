@@ -1,7 +1,7 @@
 def commonSources = [
         'LICENSE',
         'CHANGELOG.md',
-        'NOTICE',
+        'NOTICE.md',
 ]
 
 tasks.withType(Jar).configureEach {

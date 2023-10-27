@@ -1,5 +1,12 @@
 # Third-Party Code Attribution
 
+[![MIT License Logo](https://img.shields.io/badge/License-MIT-7851a9)](https://choosealicense.com/licenses/mit/)
+
+This project includes code from the Create project, which is licensed under the MIT License.
+
+- [Source](https://github.com/Creators-of-Create/Create/)
+- [License](https://github.com/Creators-of-Create/Create/blob/mc1.19/dev/LICENSE)
+
 ---
 
 # Third-Party Asset Attribution

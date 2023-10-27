@@ -20,39 +20,58 @@ package dev.kurykat.morematerials.tags;
 
 import dev.kurykat.morematerials.MoreMaterialsConstants;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.versions.forge.ForgeVersion;
 
+import java.util.Collections;
+
 public class MoreMaterialsTags {
-    public static class Blocks {
-        private static TagKey<Block> createBlockTag(String location) {
-            return BlockTags.create(new ResourceLocation(MoreMaterialsConstants.MOD_ID, location));
+    public static <T> TagKey<T> optionalTag(IForgeRegistry<T> registry, ResourceLocation id) {
+        return registry.tags().createOptionalTagKey(id, Collections.emptySet());
+    }
+
+    public static <T> TagKey<T> forgeTag(IForgeRegistry<T> registry, String path) {
+        return optionalTag(registry, new ResourceLocation(ForgeVersion.MOD_ID, path));
+    }
+
+    public static TagKey<Block> forgeBlockTag(String path) {
+        return forgeTag(ForgeRegistries.BLOCKS, path);
+    }
+
+    public static TagKey<Item> forgeItemTag(String path) {
+        return forgeTag(ForgeRegistries.ITEMS, path);
+    }
+
+    public static TagKey<Fluid> forgeFluidTag(String path) {
+        return forgeTag(ForgeRegistries.FLUIDS, path);
+    }
+
+    public enum Namespace {
+        MOD(MoreMaterialsConstants.MOD_ID, false, true),
+        FORGE(ForgeVersion.MOD_ID);
+
+        public final String id;
+        public final boolean optionalByDefault;
+        public final boolean alwaysDataGenByDefault;
+
+        Namespace(String id) {
+            this(id, true, false);
         }
 
-        private static TagKey<Block> createForgeBlockTag(String location) {
-            return BlockTags.create(new ResourceLocation(ForgeVersion.MOD_ID, location));
-        }
-
-        private static TagKey<Block> createMinecraftBlockTag(String location) {
-            return BlockTags.create(new ResourceLocation(location));
+        Namespace(String id, boolean optionalByDefault, boolean alwaysDataGenByDefault) {
+            this.id = id;
+            this.optionalByDefault = optionalByDefault;
+            this.alwaysDataGenByDefault = alwaysDataGenByDefault;
         }
     }
 
-    public static class Items {
-        private static TagKey<Item> createItemTag(String location) {
-            return ItemTags.create(new ResourceLocation(MoreMaterialsConstants.MOD_ID, location));
-        }
-
-        private static TagKey<Item> createForgeItemTag(String location) {
-            return ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, location));
-        }
-
-        private static TagKey<Item> createMinecraftItemTag(String location) {
-            return ItemTags.create(new ResourceLocation(location));
-        }
+    public static void init() {
+        MoreMaterialsBlockTags.init();
+        MoreMaterialsItemTags.init();
     }
 }

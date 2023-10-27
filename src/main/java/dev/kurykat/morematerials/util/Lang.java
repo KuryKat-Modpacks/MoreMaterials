@@ -16,16 +16,12 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package dev.kurykat.morematerials;
+package dev.kurykat.morematerials.util;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Locale;
 
-public class MoreMaterialsConstants {
-    public static final String MOD_ID = "morematerials";
-    public static final String MOD_NAME = "MoreMaterials";
-    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
-
-    public static final MoreMaterialsCreativeModeTab CREATIVE_TAB = new MoreMaterialsCreativeModeTab(MOD_ID);
-
+public class Lang {
+    public static String asId(String name) {
+        return name.toLowerCase(Locale.ROOT);
+    }
 }
