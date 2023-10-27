@@ -16,57 +16,43 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package dev.kurykat.morematerials;
+package dev.kurykat.morematerials.tags;
 
+import dev.kurykat.morematerials.MoreMaterialsConstants;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import net.minecraftforge.versions.forge.ForgeVersion;
 
-public class Constants {
-    public static final String MOD_ID = "morematerials";
-    public static final String MOD_NAME = "MoreMaterials";
-    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
-
-    public static final CreativeModeTab CREATIVE_TAB = new CreativeModeTab(MOD_ID) {
-        @Override
-        public ItemStack makeIcon() {
-            return null;
-        }
-    };
-
-    public static Item.Properties DEFAULT_ITEM_PROPS = new Item.Properties().tab(CREATIVE_TAB);
-
-    public static class Tags {
-
+public class MoreMaterialsTags {
+    public static class Blocks {
         private static TagKey<Block> createBlockTag(String location) {
-            return BlockTags.create(new ResourceLocation(MOD_ID, location));
+            return BlockTags.create(new ResourceLocation(MoreMaterialsConstants.MOD_ID, location));
         }
 
         private static TagKey<Block> createForgeBlockTag(String location) {
-            return BlockTags.create(new ResourceLocation("forge", location));
+            return BlockTags.create(new ResourceLocation(ForgeVersion.MOD_ID, location));
         }
 
         private static TagKey<Block> createMinecraftBlockTag(String location) {
-            return BlockTags.create(new ResourceLocation("minecraft", location));
+            return BlockTags.create(new ResourceLocation(location));
         }
+    }
 
+    public static class Items {
         private static TagKey<Item> createItemTag(String location) {
-            return ItemTags.create(new ResourceLocation(MOD_ID, location));
+            return ItemTags.create(new ResourceLocation(MoreMaterialsConstants.MOD_ID, location));
         }
 
         private static TagKey<Item> createForgeItemTag(String location) {
-            return ItemTags.create(new ResourceLocation("forge", location));
+            return ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, location));
         }
 
         private static TagKey<Item> createMinecraftItemTag(String location) {
-            return ItemTags.create(new ResourceLocation("minecraft", location));
+            return ItemTags.create(new ResourceLocation(location));
         }
     }
 }

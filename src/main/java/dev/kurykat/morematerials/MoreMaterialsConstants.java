@@ -16,13 +16,18 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package dev.kurykat.morematerials.init;
+package dev.kurykat.morematerials;
 
-import dev.kurykat.morematerials.Constants;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class ItemInit {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Constants.MOD_ID);
+public class MoreMaterialsConstants {
+    public static final String MOD_ID = "morematerials";
+    public static final String MOD_NAME = "MoreMaterials";
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
+
+    public static final MoreMaterialsCreativeModeTab CREATIVE_TAB = new MoreMaterialsCreativeModeTab(MOD_ID);
+
+    public static Item.Properties DEFAULT_ITEM_PROPS = new Item.Properties().tab(CREATIVE_TAB);
 }

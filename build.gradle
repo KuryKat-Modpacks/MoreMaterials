@@ -38,19 +38,7 @@ javadoc {
     options.addBooleanOption('html5', true)
 }
 
-sourcesJar {
-    from(rootProject.file('LICENSE')) {
-        rename { "${it}_${mod_id}" }
-    }
-
-    from(rootProject.file('CHANGELOG.md')) {
-        rename { "${it - ~/...$/}_${mod_id}.md" }
-    }
-
-    from(rootProject.file('LunaAssets.md')) {
-        rename { "${it - ~/...$/}_${mod_id}.md" }
-    }
-}
+apply from: 'gradle/docs.gradle'
 
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 minecraft {
@@ -185,14 +173,15 @@ dependencies {
     // Catalogue
     // v1.7.0
     runtimeOnly fg.deobf("curse.maven:catalogue-459701:${catalogue_version_id}")
-    // compileOnly fg.deobf("com.mrcrayfish:catalogue-common:${minecraft_version}-${catalogue_version}")
-    // runtimeOnly fg.deobf("com.mrcrayfish:catalogue-forge:${minecraft_version}-${catalogue_version}")
 
     // Configured
     // v2.1.1
     runtimeOnly fg.deobf("curse.maven:configured-457570:${configured_version_id}")
-    // compileOnly fg.deobf("com.mrcrayfish:configured-common:${minecraft_version}-${configured_version}")
-    // runtimeOnly fg.deobf("com.mrcrayfish:configured-forge:${minecraft_version}-${configured_version}")
+
+    // Mekanism
+    compileOnly "mekanism:Mekanism:${minecraft_version}-${mekanism_version}:api"
+
+    runtimeOnly fg.deobf("mekanism:Mekanism:${minecraft_version}-${mekanism_version}")// core
 }
 
 jar {
@@ -206,7 +195,7 @@ jar {
                 "Implementation-Vendor"   : mod_author,
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
                 'Timestamp'               : System.currentTimeMillis(),
-                'Built-On-Java'           : "${System.getProperty('java.vm.version')} ${System.getProperty 'os.arch'} (${System.getProperty('java.vm.vendor')})",
+                'Built-On-Java'           : "${System.getProperty('java.vm.version')} (${System.getProperty('java.vm.vendor')})",
                 'Built-On-Minecraft'      : minecraft_version
         ])
     }

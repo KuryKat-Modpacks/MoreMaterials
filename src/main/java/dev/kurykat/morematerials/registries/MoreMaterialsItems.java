@@ -16,16 +16,27 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package dev.kurykat.morematerials.init;
+package dev.kurykat.morematerials.registries;
 
-import dev.kurykat.morematerials.Constants;
-import net.minecraft.core.Registry;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import dev.kurykat.morematerials.MoreMaterialsConstants;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
-public class ConfiguredFeatureInit {
-    public static final DeferredRegister<ConfiguredFeature<?, ?>> CONFIGURED_FEATURES = DeferredRegister.create(
-            Registry.CONFIGURED_FEATURE_REGISTRY,
-            Constants.MOD_ID
+import java.util.function.Supplier;
+
+public class MoreMaterialsItems {
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MoreMaterialsConstants.MOD_ID);
+    public static final RegistryObject<Item> RUBY = register(
+            "ruby",
+            () -> new Item(
+                    MoreMaterialsConstants.DEFAULT_ITEM_PROPS
+            )
     );
+
+
+    private static <T extends Item> RegistryObject<T> register(String itemName, Supplier<T> itemSupplier) {
+        return ITEMS.register(itemName, itemSupplier);
+    }
 }

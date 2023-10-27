@@ -16,16 +16,20 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package dev.kurykat.morematerials.init;
+package dev.kurykat.morematerials;
 
-import dev.kurykat.morematerials.Constants;
-import net.minecraft.core.Registry;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraftforge.registries.DeferredRegister;
+import dev.kurykat.morematerials.registries.MoreMaterialsItems;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
-public class PlacedFeatureInit {
-    public static final DeferredRegister<PlacedFeature> PLACED_FEATURES = DeferredRegister.create(
-            Registry.PLACED_FEATURE_REGISTRY,
-            Constants.MOD_ID
-    );
+public class MoreMaterialsCreativeModeTab extends CreativeModeTab {
+    public MoreMaterialsCreativeModeTab(String label) {
+        super(label);
+    }
+
+    @Override
+    public @NotNull ItemStack makeIcon() {
+        return MoreMaterialsItems.RUBY.get().getDefaultInstance();
+    }
 }
