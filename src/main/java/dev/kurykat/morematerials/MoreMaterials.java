@@ -32,6 +32,7 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
+@SuppressWarnings("unused")
 @Mod(MoreMaterialsConstants.MOD_ID)
 public class MoreMaterials {
     private static final NonNullSupplier<Registrate> REGISTRATE = NonNullSupplier.lazy(() -> Registrate.create(MoreMaterialsConstants.MOD_ID));

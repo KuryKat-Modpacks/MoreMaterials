@@ -41,7 +41,7 @@ import net.minecraftforge.common.Tags;
 import static dev.kurykat.morematerials.data.TagGen.pickaxeOnly;
 import static dev.kurykat.morematerials.data.TagGen.tagBlockAndItem;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "SameParameterValue"})
 public class MoreMaterialsBlocks {
     private static final Registrate REGISTRATE = MoreMaterials.getRegistrate();
 
