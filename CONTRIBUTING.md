@@ -40,27 +40,53 @@ We welcome contributions in the following areas:
 3. Create a new branch for your contribution.
 
    ```bash
-   git checkout -b feat/<minecraft-version>/dev/<feature-name>
+   git checkout -b feat/<minecraft-version>/<feature-name>
    ```
 
    **Rules for Branching:**
 
     * ALWAYS develop under the feat/ branch
-    * "\<minecraft-version>" needs to be the correct MC version, e.g. "1.19.2"
-    * \<feature-name> needs to be a valid feature name.
-        * e.g. "fix-\<issueID>", which would in the end be the branch "feat/1.19.2/fix-45"
-        * e.g. "cool-feature", which would in the end be the branch "feat/1.19.2/cool-feature"
+    * `<minecraft-version>` needs to be the correct MC version, e.g. "1.19.2"
+    * `<feature-name>` needs to be a valid feature name.
+        * e.g. `fix-<issueID>`, which would then be the branch `feat/1.19.2/fix-45`
+        * e.g. `cool-feature`, which would then the branch `feat/1.19.2/cool-feature`
 
 4. Make your changes and commit them.
-    * **Note:**
-      All of your commits MUST follow
-      the [Conventional Commits specification](https://www.conventionalcommits.org/en/v1.0.0/#specification) and MAY
+   ```bash
+   git commit -a -m "<Emoji> <Type>([Scope]): <Message>"
+   ```
+    * Note: `([Scope])` is optional
+
+   **Rules for Committing:**
+
+    * All of your commits MUST follow
+      the [Conventional Commits specification](https://www.conventionalcommits.org/en/v1.0.0/#specification) and MUST
       use [Gitmojis](https://gitmoji.dev/)
+        * **Project Specification**
+            * ✨ = Feat
+            * ♻️ = Refactor
+            * 🐛 = Fix
+            * 💚 = CI (mostly the `.github` folder)
+            * 👷 = Chore (a.k.a. Build)
+            * 📝 = Docs
+            * 🧪 = Test
+            * 🎨 = Style
+            * 💥 = Breaking Changes FOOTER (example below)
+    * Those are the most common kinds of commits, but you might need a different one, check the Gitmojis website
+      to find more emojis and the Conventional Commits for more types!
+    * Example Commit Messages:
+        * ``✨ Feat: Create Cool Stuff``
+        * ``♻️ Refactor: Improve something nice``
+        * ``🐛 Fix(Something): Prevent some issue``
+        * Breaking Change Commit Example:
+            * ``✨ Feat!: Cool Feature that break things``
+            * (Empty Line between message and Footer)
+            * ``💥 BREAKING CHANGE: Explanation on why it break things, is it angry?``
 
 5. Push your changes to your forked repository.
 
    ```bash
-   git push origin <minecraft-version>/dev/<feature-name>
+   git push origin feat/<minecraft-version>/<feature-name>
    ```
 
 6. Submit a [Pull Request](../../pulls) to the main repository, explaining
@@ -69,7 +95,7 @@ We welcome contributions in the following areas:
     * **Note:**
       You MUST target the *DEVELOPMENT* branch of the version you're working on when creating the PR, so for example if
       your
-      develop branch was ``1.19.2/dev/cool-feature`` you will target the ``1.19.2/dev`` branch with your Pull Request.
+      develop branch was ``feat/1.19.2/cool-feature`` you will target the ``1.19.2/dev`` branch with your Pull Request.
 
 ## Code Style
 
