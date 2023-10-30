@@ -18,25 +18,42 @@
 
 package dev.kurykat.morematerials.registries;
 
+import com.tterrag.registrate.Registrate;
+import com.tterrag.registrate.builders.ItemBuilder;
+import com.tterrag.registrate.util.entry.ItemEntry;
+import com.tterrag.registrate.util.nullness.NonNullFunction;
+import dev.kurykat.morematerials.MoreMaterials;
 import dev.kurykat.morematerials.MoreMaterialsConstants;
+import dev.kurykat.morematerials.tags.MoreMaterialsItemTags;
+import dev.kurykat.morematerials.tags.MoreMaterialsTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
-
-import java.util.function.Supplier;
 
 public class MoreMaterialsItems {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MoreMaterialsConstants.MOD_ID);
-    public static final RegistryObject<Item> RUBY = register(
-            "ruby",
-            () -> new Item(
-                    MoreMaterialsConstants.DEFAULT_ITEM_PROPS
-            )
-    );
+    private static final Registrate REGISTRATE = MoreMaterials.getRegistrate();
 
+    static {
+        REGISTRATE.creativeModeTab(() -> MoreMaterialsConstants.CREATIVE_TAB);
+    }
 
-    private static <T extends Item> RegistryObject<T> register(String itemName, Supplier<T> itemSupplier) {
-        return ITEMS.register(itemName, itemSupplier);
+    public static final ItemEntry<Item> RUBY =
+            createTaggedItem(
+                    "ruby",
+                    Item::new,
+                    MoreMaterialsTags.forgeItemTag("gems/ruby"),
+                    MoreMaterialsItemTags.MORE_MATERIALS_GEMS.tag
+            ).register();
+
+    @SafeVarargs
+    private static <T extends Item> ItemBuilder<T, Registrate> createTaggedItem(String name, NonNullFunction<Item.Properties, T> itemFactory, TagKey<Item>... tags) {
+        return REGISTRATE.item(name, itemFactory)
+                .tag(tags);
+    }
+
+    private static <T extends Item> ItemBuilder<T, Registrate> createItem(String name, NonNullFunction<Item.Properties, T> itemFactory) {
+        return REGISTRATE.item(name, itemFactory);
+    }
+
+    public static void register() {
     }
 }

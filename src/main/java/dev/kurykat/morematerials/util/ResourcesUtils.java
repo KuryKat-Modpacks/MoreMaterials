@@ -16,16 +16,16 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package dev.kurykat.morematerials;
+package dev.kurykat.morematerials.util;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+public class ResourcesUtils {
 
-public class MoreMaterialsConstants {
-    public static final String MOD_ID = "morematerials";
-    public static final String MOD_NAME = "MoreMaterials";
-    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
+    private static final String[] blockPrefixes = {"deepslate_", "nether_", "end_"};
+    private static final String[] blockSuffixes = {"_ore", "_block"};
 
-    public static final MoreMaterialsCreativeModeTab CREATIVE_TAB = new MoreMaterialsCreativeModeTab(MOD_ID);
-
+    public static String getResourceNameFromBlockName(String blockName) {
+        return blockName
+                .replaceAll("^(" + String.join("|", blockPrefixes) + ")", "")
+                .replaceAll("(" + String.join("|", blockSuffixes) + ")$", "");
+    }
 }

@@ -31,7 +31,7 @@ with the same familiar materials from the original mod.
 
 We value and respect the creative work of the original project, and any other projects that had part of their code,
 or assets, used in this project, and we want to ensure that their contributions are
-acknowledged appropriately. To read more about it, [see this file](./NOTICE), it provides attribution for the
+acknowledged appropriately. To read more about it, [see this file](./NOTICE.md), it provides attribution for the
 assets, and code, used from different projects, including the original "Lopy's More Materials" mod.
 
 ## Getting Started
