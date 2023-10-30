@@ -244,6 +244,7 @@ publishing {
             version project.version
 
             artifact jar
+            artifact jarJar
             artifact sourcesJar
             artifact javadocJar
         }
