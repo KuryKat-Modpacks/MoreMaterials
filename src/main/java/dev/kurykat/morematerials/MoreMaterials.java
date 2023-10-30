@@ -20,10 +20,13 @@ package dev.kurykat.morematerials;
 
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import dev.kurykat.morematerials.infrastructure.config.MoreMaterialsConfigs;
+import dev.kurykat.morematerials.infrastructure.worldgen.MoreMaterialsBuiltinRegistration;
+import dev.kurykat.morematerials.infrastructure.worldgen.MoreMaterialsFeatures;
+import dev.kurykat.morematerials.infrastructure.worldgen.MoreMaterialsOreFeatureConfigEntries;
+import dev.kurykat.morematerials.infrastructure.worldgen.MoreMaterialsPlacementModifiers;
 import dev.kurykat.morematerials.registries.MoreMaterialsBlocks;
-import dev.kurykat.morematerials.registries.MoreMaterialsConfiguredFeatures;
 import dev.kurykat.morematerials.registries.MoreMaterialsItems;
-import dev.kurykat.morematerials.registries.MoreMaterialsPlacedFeatures;
 import dev.kurykat.morematerials.tags.MoreMaterialsTags;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -51,11 +54,15 @@ public class MoreMaterials {
         MoreMaterialsItems.register();
         MoreMaterialsBlocks.register();
 
-        MoreMaterialsConfiguredFeatures.CONFIGURED_FEATURES.register(modEventBus);
-        MoreMaterialsPlacedFeatures.PLACED_FEATURES.register(modEventBus);
+        MoreMaterialsOreFeatureConfigEntries.init();
+        MoreMaterialsFeatures.register(modEventBus);
+        MoreMaterialsPlacementModifiers.register(modEventBus);
+        MoreMaterialsBuiltinRegistration.register(modEventBus);
+
+        MoreMaterialsConfigs.register(modLoadingContext);
     }
 
-    public static ResourceLocation resourceLocation(String path) {
+    public static ResourceLocation asResource(String path) {
         return new ResourceLocation(MoreMaterialsConstants.MOD_ID, path);
     }
 }
