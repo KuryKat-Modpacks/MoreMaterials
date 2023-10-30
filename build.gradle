@@ -243,10 +243,8 @@ publishing {
             artifactId project.archivesBaseName
             version project.version
 
-            artifact jar
-            artifact jarJar
-            artifact sourcesJar
-            artifact javadocJar
+            from components.java
+            jarJar.component(it)
         }
     }
     repositories {
