@@ -18,7 +18,7 @@
 
 package dev.kurykat.morematerials.tags;
 
-import dev.kurykat.morematerials.util.Lang;
+import dev.kurykat.morematerials.foundation.util.Lang;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -56,9 +56,9 @@ public enum MoreMaterialsItemTags {
     MoreMaterialsItemTags(Namespace namespace, String path, boolean optional, boolean alwaysDataGen) {
         ResourceLocation id = new ResourceLocation(namespace.id, path == null ? Lang.asId(name()) : path);
         if (optional) {
-            this.tag = optionalTag(ForgeRegistries.ITEMS, id);
+            tag = optionalTag(ForgeRegistries.ITEMS, id);
         } else {
-            this.tag = ItemTags.create(id);
+            tag = ItemTags.create(id);
         }
         this.alwaysDataGen = alwaysDataGen;
     }

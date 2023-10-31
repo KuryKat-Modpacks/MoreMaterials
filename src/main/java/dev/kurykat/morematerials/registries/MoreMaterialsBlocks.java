@@ -26,7 +26,7 @@ import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import dev.kurykat.morematerials.MoreMaterials;
 import dev.kurykat.morematerials.MoreMaterialsConstants;
-import dev.kurykat.morematerials.util.ResourcesUtils;
+import dev.kurykat.morematerials.foundation.util.ResourcesUtils;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.Item;
@@ -38,8 +38,8 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.common.Tags;
 
-import static dev.kurykat.morematerials.data.TagGen.pickaxeOnly;
-import static dev.kurykat.morematerials.data.TagGen.tagBlockAndItem;
+import static dev.kurykat.morematerials.foundation.data.TagGen.pickaxeOnly;
+import static dev.kurykat.morematerials.foundation.data.TagGen.tagBlockAndItem;
 
 @SuppressWarnings({"unused", "SameParameterValue"})
 public class MoreMaterialsBlocks {

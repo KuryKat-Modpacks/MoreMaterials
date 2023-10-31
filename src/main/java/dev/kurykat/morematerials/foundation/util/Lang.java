@@ -16,16 +16,12 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package dev.kurykat.morematerials.util;
+package dev.kurykat.morematerials.foundation.util;
 
-public class ResourcesUtils {
+import java.util.Locale;
 
-    private static final String[] blockPrefixes = {"deepslate_", "nether_", "end_"};
-    private static final String[] blockSuffixes = {"_ore", "_block"};
-
-    public static String getResourceNameFromBlockName(String blockName) {
-        return blockName
-                .replaceAll("^(" + String.join("|", blockPrefixes) + ")", "")
-                .replaceAll("(" + String.join("|", blockSuffixes) + ")$", "");
+public class Lang {
+    public static String asId(String name) {
+        return name.toLowerCase(Locale.ROOT);
     }
 }
