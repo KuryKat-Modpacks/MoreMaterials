@@ -37,17 +37,30 @@ public class MoreMaterialsItems {
     }
 
     public static final ItemEntry<Item> RUBY =
-            createTaggedItem(
-                    "ruby",
-                    Item::new,
-                    MoreMaterialsTags.forgeItemTag("gems/ruby"),
-                    MoreMaterialsItemTags.GEMS.tag
-            ).register();
+            createGemItem("ruby", Item::new)
+                    .register();
+    public static final ItemEntry<Item> CELESLAR =
+            createIngotItem("celeslar", Item::new)
+                    .properties(Item.Properties::fireResistant)
+                    .register();
+
+    private static <T extends Item> ItemBuilder<T, Registrate> createGemItem(String resourceName, NonNullFunction<Item.Properties, T> itemFactory) {
+        return createTaggedItem(resourceName, itemFactory, MoreMaterialsTags.forgeItemTag("gems/" + resourceName), MoreMaterialsItemTags.GEMS.tag)
+                .model((context, provider) -> {
+                    provider.generated(context::get, MoreMaterials.asResource("item/gems/" + resourceName));
+                });
+    }
+
+    private static <T extends Item> ItemBuilder<T, Registrate> createIngotItem(String resourceName, NonNullFunction<Item.Properties, T> itemFactory) {
+        return createTaggedItem(resourceName + "_ingot", itemFactory, MoreMaterialsTags.forgeItemTag("ingots/" + resourceName), MoreMaterialsItemTags.INGOTS.tag)
+                .model((context, provider) -> {
+                    provider.generated(context::get, MoreMaterials.asResource("item/ingots/" + resourceName));
+                });
+    }
 
     @SafeVarargs
     private static <T extends Item> ItemBuilder<T, Registrate> createTaggedItem(String name, NonNullFunction<Item.Properties, T> itemFactory, TagKey<Item>... tags) {
-        return REGISTRATE.item(name, itemFactory)
-                .tag(tags);
+        return createItem(name, itemFactory).tag(tags);
     }
 
     private static <T extends Item> ItemBuilder<T, Registrate> createItem(String name, NonNullFunction<Item.Properties, T> itemFactory) {

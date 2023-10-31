@@ -22,9 +22,15 @@ You can find the original mod [here](https://www.curseforge.com/minecraft/mc-mod
 
 This list every asset that has been used.
 
-- [ruby_block.png](./src/main/resources/assets/morematerials/textures/block/ruby_block.png): Created
+- [ruby_block.png](./src/main/resources/assets/morematerials/textures/block/storage_blocks/ruby.png): Created
   by [Luna](https://legacy.curseforge.com/members/luna/projects) and licensed
   under [CC-BY 4.0](http://creativecommons.org/licenses/by/4.0/).
-- [ruby.png](./src/main/resources/assets/morematerials/textures/item/ruby.png): Created
+- [ruby.png](./src/main/resources/assets/morematerials/textures/item/gems/ruby.png): Created
+  by [Luna](https://legacy.curseforge.com/members/luna/projects) and licensed
+  under [CC-BY 4.0](http://creativecommons.org/licenses/by/4.0/).
+- [celeslar_block.png](./src/main/resources/assets/morematerials/textures/block/storage_blocks/celeslar.png): Created
+  by [Luna](https://legacy.curseforge.com/members/luna/projects) and licensed
+  under [CC-BY 4.0](http://creativecommons.org/licenses/by/4.0/).
+- [celeslar.png](./src/main/resources/assets/morematerials/textures/item/ingots/celeslar.png): Created
   by [Luna](https://legacy.curseforge.com/members/luna/projects) and licensed
   under [CC-BY 4.0](http://creativecommons.org/licenses/by/4.0/).

@@ -59,6 +59,11 @@ public class MoreMaterialsRecipesGen extends MoreMaterialsRecipeProvider {
             ImmutableList.of(I::ruby, I::rubyBlock)
     );
 
+    GeneratedRecipe CELESLAR_COMPACTING = materialCompacting(
+            ImmutableList.of(MoreMaterialsItems.CELESLAR, MoreMaterialsBlocks.CELESLAR_BLOCK),
+            ImmutableList.of(I::celeslar, I::celeslarBlock)
+    );
+
     private final Marker COOKING = enterFolder("/");
 
     GeneratedRecipe RUBY_ORE = blastOreTag(MoreMaterialsItems.RUBY::get, () -> MoreMaterialsTags.forgeItemTag("ores/ruby"));

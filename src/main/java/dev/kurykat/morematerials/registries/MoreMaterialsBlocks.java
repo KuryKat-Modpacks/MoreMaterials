@@ -26,7 +26,6 @@ import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import dev.kurykat.morematerials.MoreMaterials;
 import dev.kurykat.morematerials.MoreMaterialsConstants;
-import dev.kurykat.morematerials.foundation.util.ResourcesUtils;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.Item;
@@ -50,38 +49,72 @@ public class MoreMaterialsBlocks {
     }
 
     public static final BlockEntry<DropExperienceBlock> RUBY_ORE = createOreBlock(
-            "ruby_ore", properties -> new DropExperienceBlock(properties, UniformInt.of(3, 7)),
+            "ruby", OreTypes.STONE, properties -> new DropExperienceBlock(properties, UniformInt.of(3, 7)),
             Material.STONE, MaterialColor.STONE, SoundType.STONE, MoreMaterialsItems.RUBY
     ).register();
 
     public static final BlockEntry<DropExperienceBlock> DEEPSLATE_RUBY_ORE = createOreBlock(
-            "deepslate_ruby_ore", properties -> new DropExperienceBlock(properties, UniformInt.of(3, 7)),
+            "ruby", OreTypes.DEEPSLATE, properties -> new DropExperienceBlock(properties, UniformInt.of(3, 7)),
             Material.STONE, MaterialColor.DEEPSLATE, SoundType.DEEPSLATE, MoreMaterialsItems.RUBY
     ).register();
 
     public static final BlockEntry<Block> RUBY_BLOCK = createStorageBlock(
-            "ruby_block", Block::new,
+            "ruby", Block::new,
             Material.METAL, MaterialColor.COLOR_RED, SoundType.METAL
     ).register();
 
+    public static final BlockEntry<Block> CELESLAR_BLOCK = createStorageBlock(
+            "celeslar", Block::new,
+            Material.METAL, MaterialColor.COLOR_BLUE, SoundType.METAL
+    ).item().properties(Item.Properties::fireResistant).build().register();
+
+    private enum OreTypes {
+        STONE,
+        DEEPSLATE,
+        NETHER,
+        END
+    }
+
     private static <T extends Block> BlockBuilder<T, Registrate> createOreBlock(
-            String name,
+            String resourceName,
+            OreTypes type,
             NonNullFunction<BlockBehaviour.Properties, T> blockFactory,
             Material material,
             MaterialColor materialColor,
             SoundType soundType,
             ItemEntry<Item> itemDrop
     ) {
+        String typeName = type.name().toLowerCase();
+        String blockNameSuffix = resourceName + "_ore";
+        String blockName = type.equals(OreTypes.STONE) ? blockNameSuffix : typeName + "_" + blockNameSuffix;
+        String groundTag = type.equals(OreTypes.DEEPSLATE) ? "ores_in_ground/deepslate"
+                : type.equals(OreTypes.NETHER) ? "ores_in_ground/netherrack"
+                : type.equals(OreTypes.END) ? "ores_in_ground/end_stone"
+                : "ores_in_ground/stone";
+
         return REGISTRATE
-                .block(name, blockFactory)
+                .block(blockName, blockFactory)
                 .initialProperties(material)
                 .properties(prop -> prop
                         .color(materialColor)
                         .requiresCorrectToolForDrops()
-                        .strength(name.startsWith("deepslate") ? 4.5F : 3.0F, 3.0F)
+                        .strength(
+                                type.equals(OreTypes.DEEPSLATE) ? 4.5F : 3.0F,
+                                type.equals(OreTypes.END) ? 9.0F : 3.0F
+                        )
                         .sound(soundType)
                 )
                 .transform(pickaxeOnly())
+                .blockstate((context, provider) ->
+                        provider.simpleBlock(
+                                context.get(),
+                                provider.models()
+                                        .cubeAll(
+                                                context.getName(),
+                                                provider.modLoc("block/ores/" + resourceName + "/" + typeName)
+                                        )
+                        )
+                )
                 .loot((lootTables, block) -> lootTables.add(
                         block, RegistrateBlockLootTables.createOreDrop(block, itemDrop.get())
                 ))
@@ -89,8 +122,8 @@ public class MoreMaterialsBlocks {
                 .tag(Tags.Blocks.ORES)
                 .transform(
                         tagBlockAndItem(
-                                "ores/" + ResourcesUtils.getResourceNameFromBlockName(name),
-                                name.startsWith("deepslate") ? "ores_in_ground/deepslate" : "ores_in_ground/stone"
+                                "ores/" + resourceName,
+                                groundTag
                         )
                 )
                 .tag(Tags.Items.ORES)
@@ -98,14 +131,14 @@ public class MoreMaterialsBlocks {
     }
 
     private static <T extends Block> BlockBuilder<T, Registrate> createStorageBlock(
-            String name,
+            String resourceName,
             NonNullFunction<BlockBehaviour.Properties, T> blockFactory,
             Material material,
             MaterialColor materialColor,
             SoundType soundType
     ) {
         return REGISTRATE
-                .block(name, blockFactory)
+                .block(resourceName + "_block", blockFactory)
                 .initialProperties(material, materialColor)
                 .properties(properties -> properties
                         .strength(5.0F, 6.0F)
@@ -113,10 +146,20 @@ public class MoreMaterialsBlocks {
                         .sound(soundType)
                 )
                 .transform(pickaxeOnly())
+                .blockstate((context, provider) ->
+                        provider.simpleBlock(
+                                context.get(),
+                                provider.models()
+                                        .cubeAll(
+                                                context.getName(),
+                                                provider.modLoc("block/storage_blocks/" + resourceName)
+                                        )
+                        )
+                )
                 .tag(BlockTags.NEEDS_IRON_TOOL)
                 .tag(Tags.Blocks.STORAGE_BLOCKS)
                 .tag(BlockTags.BEACON_BASE_BLOCKS)
-                .transform(tagBlockAndItem("storage_blocks/" + ResourcesUtils.getResourceNameFromBlockName(name)))
+                .transform(tagBlockAndItem("storage_blocks/" + resourceName))
                 .tag(Tags.Items.STORAGE_BLOCKS)
                 .build();
     }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "morematerials:item/gems/ruby"
+    "layer0": "morematerials:item/ingots/celeslar"
   }
 }
