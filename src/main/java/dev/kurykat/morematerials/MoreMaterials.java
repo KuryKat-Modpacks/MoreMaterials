@@ -21,6 +21,7 @@ package dev.kurykat.morematerials;
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import dev.kurykat.morematerials.infrastructure.config.MoreMaterialsConfigs;
+import dev.kurykat.morematerials.infrastructure.data.MoreMaterialsDataGen;
 import dev.kurykat.morematerials.infrastructure.worldgen.MoreMaterialsBuiltinRegistration;
 import dev.kurykat.morematerials.infrastructure.worldgen.MoreMaterialsFeatures;
 import dev.kurykat.morematerials.infrastructure.worldgen.MoreMaterialsOreFeatureConfigEntries;
@@ -30,6 +31,7 @@ import dev.kurykat.morematerials.registries.MoreMaterialsItems;
 import dev.kurykat.morematerials.tags.MoreMaterialsTags;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -60,6 +62,8 @@ public class MoreMaterials {
         MoreMaterialsBuiltinRegistration.register(modEventBus);
 
         MoreMaterialsConfigs.register(modLoadingContext);
+
+        modEventBus.addListener(EventPriority.LOWEST, MoreMaterialsDataGen::gatherData);
     }
 
     public static ResourceLocation asResource(String path) {

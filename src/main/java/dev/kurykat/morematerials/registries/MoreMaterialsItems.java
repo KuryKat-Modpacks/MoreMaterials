@@ -41,7 +41,7 @@ public class MoreMaterialsItems {
                     "ruby",
                     Item::new,
                     MoreMaterialsTags.forgeItemTag("gems/ruby"),
-                    MoreMaterialsItemTags.MORE_MATERIALS_GEMS.tag
+                    MoreMaterialsItemTags.GEMS.tag
             ).register();
 
     @SafeVarargs

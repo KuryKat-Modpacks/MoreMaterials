@@ -170,7 +170,7 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.19.2-43.3.2'
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     def registrate = "com.tterrag.registrate:Registrate:${registrate_version}"
     jarJar(registrate) {
@@ -191,6 +191,10 @@ dependencies {
     // Configured
     // v2.1.1
     runtimeOnly fg.deobf("curse.maven:configured-457570:${configured_version_id}")
+
+    // World Stripper
+    // v3.2.2
+    runtimeOnly fg.deobf("curse.maven:worldstripper-250603:${worldstripper_version_id}")
 
     // Mekanism
     compileOnly "mekanism:Mekanism:${minecraft_version}-${mekanism_version}:api"

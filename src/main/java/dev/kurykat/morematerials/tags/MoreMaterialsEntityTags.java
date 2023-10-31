@@ -19,59 +19,51 @@
 package dev.kurykat.morematerials.tags;
 
 import dev.kurykat.morematerials.foundation.util.Lang;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import static dev.kurykat.morematerials.tags.MoreMaterialsTags.Namespace;
 import static dev.kurykat.morematerials.tags.MoreMaterialsTags.Namespace.MOD;
 import static dev.kurykat.morematerials.tags.MoreMaterialsTags.optionalTag;
 
+public enum MoreMaterialsEntityTags {
+    ;
 
-public enum MoreMaterialsItemTags {
-    GEMS,
-    INGOTS;
-
-    public final TagKey<Item> tag;
+    public final TagKey<EntityType<?>> tag;
     public final boolean alwaysDataGen;
 
-    MoreMaterialsItemTags() {
+    MoreMaterialsEntityTags() {
         this(MOD);
     }
 
-    MoreMaterialsItemTags(Namespace namespace) {
+    MoreMaterialsEntityTags(Namespace namespace) {
         this(namespace, namespace.optionalByDefault, namespace.alwaysDataGenByDefault);
     }
 
-    MoreMaterialsItemTags(Namespace namespace, String path) {
+    MoreMaterialsEntityTags(Namespace namespace, String path) {
         this(namespace, path, namespace.optionalByDefault, namespace.alwaysDataGenByDefault);
     }
 
-    MoreMaterialsItemTags(Namespace namespace, boolean optional, boolean alwaysDataGen) {
+    MoreMaterialsEntityTags(Namespace namespace, boolean optional, boolean alwaysDataGen) {
         this(namespace, null, optional, alwaysDataGen);
     }
 
-    MoreMaterialsItemTags(Namespace namespace, String path, boolean optional, boolean alwaysDataGen) {
+    MoreMaterialsEntityTags(Namespace namespace, String path, boolean optional, boolean alwaysDataGen) {
         ResourceLocation id = new ResourceLocation(namespace.id, path == null ? Lang.asId(name()) : path);
         if (optional) {
-            tag = optionalTag(ForgeRegistries.ITEMS, id);
+            tag = optionalTag(ForgeRegistries.ENTITY_TYPES, id);
         } else {
-            tag = ItemTags.create(id);
+            tag = TagKey.create(Registry.ENTITY_TYPE_REGISTRY, id);
         }
         this.alwaysDataGen = alwaysDataGen;
     }
 
-    @SuppressWarnings("deprecation")
-    public boolean matches(Item item) {
-        return item.builtInRegistryHolder()
-                .is(tag);
-    }
-
-    public boolean matches(ItemStack stack) {
-        return stack.is(tag);
+    public boolean matches(Entity entity) {
+        return entity.getType().is(tag);
     }
 
     public static void init() {

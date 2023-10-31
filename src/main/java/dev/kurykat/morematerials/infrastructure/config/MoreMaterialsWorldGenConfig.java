@@ -24,7 +24,7 @@ import dev.kurykat.morematerials.infrastructure.worldgen.MoreMaterialsOreFeature
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public class MoreMaterialsWorldGenConfig extends BaseConfig {
-    public static final int FORCED_UPDATE_VERSION = 2;
+    public static final int FORCED_UPDATE_VERSION = 1;
 
     public final BoolConfig disable = boolConfig(false, "disableWorldGen", Comments.disable);
 
