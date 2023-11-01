@@ -68,6 +68,8 @@ public class MoreMaterialsRecipesGen extends MoreMaterialsRecipeProvider {
 
     GeneratedRecipe RUBY_ORE = blastOreTag(MoreMaterialsItems.RUBY::get, () -> MoreMaterialsTags.forgeItemTag("ores/ruby"));
 
+    GeneratedRecipe CELESLAR_ORE = blastOreTag(MoreMaterialsItems.CELESLAR::get, () -> MoreMaterialsTags.forgeItemTag("ores/celeslar"));
+
     /*
      * End of recipe list
      */

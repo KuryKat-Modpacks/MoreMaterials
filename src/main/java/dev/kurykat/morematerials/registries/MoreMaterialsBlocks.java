@@ -63,6 +63,16 @@ public class MoreMaterialsBlocks {
             Material.METAL, MaterialColor.COLOR_RED, SoundType.METAL
     ).register();
 
+    public static final BlockEntry<DropExperienceBlock> CELESLAR_ORE = createOreBlock(
+            "celeslar", OreTypes.STONE, properties -> new DropExperienceBlock(properties, UniformInt.of(3, 7)),
+            Material.STONE, MaterialColor.STONE, SoundType.STONE, MoreMaterialsItems.CELESLAR
+    ).item().properties(Item.Properties::fireResistant).build().register();
+
+    public static final BlockEntry<DropExperienceBlock> DEEPSLATE_CELESLAR_ORE = createOreBlock(
+            "celeslar", OreTypes.DEEPSLATE, properties -> new DropExperienceBlock(properties, UniformInt.of(3, 7)),
+            Material.STONE, MaterialColor.DEEPSLATE, SoundType.DEEPSLATE, MoreMaterialsItems.CELESLAR
+    ).item().properties(Item.Properties::fireResistant).build().register();
+
     public static final BlockEntry<Block> CELESLAR_BLOCK = createStorageBlock(
             "celeslar", Block::new,
             Material.METAL, MaterialColor.COLOR_BLUE, SoundType.METAL
