@@ -33,11 +33,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration.TargetBlockState;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.common.world.ForgeBiomeModifiers.AddFeaturesBiomeModifier;
@@ -165,6 +167,7 @@ public class OreFeatureConfigEntry extends BaseConfig {
         public NonNullSupplier<? extends Block> block;
         public NonNullSupplier<? extends Block> deepBlock;
         public NonNullSupplier<? extends Block> netherBlock;
+        public NonNullSupplier<? extends Block> endBlock;
 
         public StandardDataGenExtension withBlock(NonNullSupplier<? extends Block> block) {
             this.block = block;
@@ -180,6 +183,11 @@ public class OreFeatureConfigEntry extends BaseConfig {
 
         public StandardDataGenExtension withNetherBlock(NonNullSupplier<? extends Block> block) {
             this.netherBlock = block;
+            return this;
+        }
+
+        public StandardDataGenExtension withEndBlock(NonNullSupplier<? extends Block> block) {
+            this.endBlock = block;
             return this;
         }
 
@@ -200,6 +208,9 @@ public class OreFeatureConfigEntry extends BaseConfig {
             }
             if (netherBlock != null) {
                 targetBlockStates.add(OreConfiguration.target(OreFeatures.NETHER_ORE_REPLACEABLES, netherBlock.get().defaultBlockState()));
+            }
+            if (endBlock != null) {
+                targetBlockStates.add(OreConfiguration.target(new BlockMatchTest(Blocks.END_STONE), endBlock.get().defaultBlockState()));
             }
             ConfigDrivenOreFeatureConfiguration config = new ConfigDrivenOreFeatureConfiguration(OreFeatureConfigEntry.this, 0, targetBlockStates);
             return new ConfiguredFeature<>(MoreMaterialsFeatures.STANDARD_ORE.get(), config);

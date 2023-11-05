@@ -29,6 +29,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
+import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraftforge.common.util.NonNullConsumer;
 
 import javax.annotation.Nullable;
@@ -72,15 +73,22 @@ public class LayerPattern {
     public static class Builder {
         private final List<Layer> layers = new ArrayList<>();
         private boolean netherMode;
+        private boolean endMode;
 
         public Builder inNether() {
             netherMode = true;
             return this;
         }
 
+        public Builder inEnd() {
+            endMode = true;
+            return this;
+        }
+
         public Builder layer(NonNullConsumer<Layer.Builder> builder) {
             Layer.Builder layerBuilder = new Layer.Builder();
             layerBuilder.netherMode = netherMode;
+            layerBuilder.endMode = endMode;
             builder.accept(layerBuilder);
             layers.add(layerBuilder.build());
             return this;
@@ -134,6 +142,7 @@ public class LayerPattern {
             private int maxSize = 1;
             private int weight = 1;
             private boolean netherMode;
+            private boolean endMode;
 
             public Builder block(NonNullSupplier<? extends Block> block) {
                 return block(block.get());
@@ -145,8 +154,19 @@ public class LayerPattern {
 
             public Builder block(Block block) {
                 if (netherMode) {
-                    this.targets.add(ImmutableList.of(OreConfiguration
-                            .target(OreFeatures.NETHER_ORE_REPLACEABLES, block.defaultBlockState())));
+                    this.targets.add(ImmutableList.of(
+                            OreConfiguration.target(
+                                    OreFeatures.NETHER_ORE_REPLACEABLES, block.defaultBlockState()
+                            )
+                    ));
+                    return this;
+                }
+                if (endMode) {
+                    this.targets.add(ImmutableList.of(
+                            OreConfiguration.target(
+                                    new BlockMatchTest(Blocks.END_STONE), block.defaultBlockState()
+                            )
+                    ));
                     return this;
                 }
                 return blocks(block.defaultBlockState(), block.defaultBlockState());
