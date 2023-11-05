@@ -25,8 +25,8 @@ import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguratio
 import java.util.List;
 
 public class ConfigDrivenOreFeatureConfiguration extends BaseConfigDrivenOreFeatureConfiguration {
-    public static final Codec<ConfigDrivenOreFeatureConfiguration> CODEC = RecordCodecBuilder
-            .create(instance -> instance
+    public static final Codec<ConfigDrivenOreFeatureConfiguration> CODEC = RecordCodecBuilder.create(
+            instance -> instance
                     .group(
                             OreFeatureConfigEntry.CODEC
                                     .fieldOf("entry")
@@ -37,7 +37,8 @@ public class ConfigDrivenOreFeatureConfiguration extends BaseConfigDrivenOreFeat
                             Codec.list(TargetBlockState.CODEC)
                                     .fieldOf("targets")
                                     .forGetter(config -> config.targetStates)
-                    ).apply(instance, ConfigDrivenOreFeatureConfiguration::new));
+                    ).apply(instance, ConfigDrivenOreFeatureConfiguration::new)
+    );
 
     private final List<TargetBlockState> targetStates;
 

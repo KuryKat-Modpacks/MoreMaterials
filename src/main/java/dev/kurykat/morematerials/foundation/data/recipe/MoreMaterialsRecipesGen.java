@@ -339,13 +339,11 @@ public class MoreMaterialsRecipesGen extends MoreMaterialsRecipeProvider {
                         subBuilder.unlockedBy("has_item", inventoryTrigger(unlockedBy.get()));
                     }
                     subBuilder.save(
-                            result -> {
-                                consumer.accept(
-                                        isOtherMod ?
-                                                new ModdedCookingRecipeResult(result, compatDataGenOutput, recipeConditions)
-                                                : result
-                                );
-                            },
+                            result -> consumer.accept(
+                                    isOtherMod ?
+                                            new ModdedCookingRecipeResult(result, compatDataGenOutput, recipeConditions)
+                                            : result
+                            ),
                             createSimpleLocation(
                                     RegisteredObjects.getKeyOrThrow(serializer).getPath()
                             )

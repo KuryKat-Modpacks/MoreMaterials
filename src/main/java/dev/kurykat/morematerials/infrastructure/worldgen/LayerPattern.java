@@ -100,22 +100,23 @@ public class LayerPattern {
     }
 
     public static class Layer {
-        public static final Codec<Layer> CODEC = RecordCodecBuilder.create(instance -> {
-            return instance.group(
-                    Codec.list(Codec.list(OreConfiguration.TargetBlockState.CODEC))
-                            .fieldOf("targets")
-                            .forGetter(layer -> layer.targets),
-                    Codec.intRange(0, Integer.MAX_VALUE)
-                            .fieldOf("min_size")
-                            .forGetter(layer -> layer.minSize),
-                    Codec.intRange(0, Integer.MAX_VALUE)
-                            .fieldOf("max_size")
-                            .forGetter(layer -> layer.maxSize),
-                    Codec.intRange(0, Integer.MAX_VALUE)
-                            .fieldOf("weight")
-                            .forGetter(layer -> layer.weight)
-            ).apply(instance, Layer::new);
-        });
+        public static final Codec<Layer> CODEC = RecordCodecBuilder.create(
+                instance -> instance
+                        .group(
+                                Codec.list(Codec.list(OreConfiguration.TargetBlockState.CODEC))
+                                        .fieldOf("targets")
+                                        .forGetter(layer -> layer.targets),
+                                Codec.intRange(0, Integer.MAX_VALUE)
+                                        .fieldOf("min_size")
+                                        .forGetter(layer -> layer.minSize),
+                                Codec.intRange(0, Integer.MAX_VALUE)
+                                        .fieldOf("max_size")
+                                        .forGetter(layer -> layer.maxSize),
+                                Codec.intRange(0, Integer.MAX_VALUE)
+                                        .fieldOf("weight")
+                                        .forGetter(layer -> layer.weight)
+                        ).apply(instance, Layer::new)
+        );
 
         public final List<List<OreConfiguration.TargetBlockState>> targets;
         public final int minSize;

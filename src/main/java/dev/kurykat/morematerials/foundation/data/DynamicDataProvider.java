@@ -82,9 +82,9 @@ public class DynamicDataProvider<T> implements DataProvider {
 
     private void dumpValue(Path path, CachedOutput cache, DynamicOps<JsonElement> ops, Encoder<T> encoder, T value) {
         try {
-            Optional<JsonElement> optional = encoder.encodeStart(ops, value).resultOrPartial((message) -> {
-                MoreMaterialsConstants.LOGGER.error("Couldn't serialize element {}: {}", path, message);
-            });
+            Optional<JsonElement> optional = encoder.encodeStart(ops, value).resultOrPartial(
+                    (message) -> MoreMaterialsConstants.LOGGER.error("Couldn't serialize element {}: {}", path, message)
+            );
             if (optional.isPresent()) {
                 DataProvider.saveStable(cache, optional.get(), path);
             }

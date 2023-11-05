@@ -32,13 +32,14 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class ConfigDrivenPlacement extends PlacementModifier {
-    public static final Codec<ConfigDrivenPlacement> CODEC = RecordCodecBuilder
-            .create(instance -> instance
+    public static final Codec<ConfigDrivenPlacement> CODEC = RecordCodecBuilder.create(
+            instance -> instance
                     .group(
                             OreFeatureConfigEntry.CODEC
                                     .fieldOf("entry")
                                     .forGetter(ConfigDrivenPlacement::getEntry)
-                    ).apply(instance, ConfigDrivenPlacement::new));
+                    ).apply(instance, ConfigDrivenPlacement::new)
+    );
 
     private final OreFeatureConfigEntry entry;
 

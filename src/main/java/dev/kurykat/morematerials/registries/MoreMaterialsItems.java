@@ -46,16 +46,12 @@ public class MoreMaterialsItems {
 
     private static <T extends Item> ItemBuilder<T, Registrate> createGemItem(String materialName, NonNullFunction<Item.Properties, T> itemFactory) {
         return createTaggedItem(materialName, itemFactory, MoreMaterialsTags.forgeItemTag("gems/" + materialName), MoreMaterialsItemTags.GEMS.tag)
-                .model((context, provider) -> {
-                    provider.generated(context::get, MoreMaterials.asResource("item/gems/" + materialName));
-                });
+                .model((context, provider) -> provider.generated(context::get, MoreMaterials.asResource("item/gems/" + materialName)));
     }
 
     private static <T extends Item> ItemBuilder<T, Registrate> createIngotItem(String materialName, NonNullFunction<Item.Properties, T> itemFactory) {
         return createTaggedItem(materialName + "_ingot", itemFactory, MoreMaterialsTags.forgeItemTag("ingots/" + materialName), MoreMaterialsItemTags.INGOTS.tag)
-                .model((context, provider) -> {
-                    provider.generated(context::get, MoreMaterials.asResource("item/ingots/" + materialName));
-                });
+                .model((context, provider) -> provider.generated(context::get, MoreMaterials.asResource("item/ingots/" + materialName)));
     }
 
     @SafeVarargs
