@@ -25,7 +25,6 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import dev.kurykat.morematerials.MoreMaterials;
-import dev.kurykat.morematerials.MoreMaterialsConstants;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.Item;
@@ -45,7 +44,7 @@ public class MoreMaterialsBlocks {
     private static final Registrate REGISTRATE = MoreMaterials.getRegistrate();
 
     static {
-        REGISTRATE.creativeModeTab(() -> MoreMaterialsConstants.CREATIVE_TAB);
+        REGISTRATE.creativeModeTab(() -> MoreMaterials.CREATIVE_TAB);
     }
 
     public static final BlockEntry<DropExperienceBlock> RUBY_ORE = createOreBlock(

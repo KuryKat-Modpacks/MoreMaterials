@@ -18,7 +18,7 @@
 
 package dev.kurykat.morematerials.infrastructure.worldgen;
 
-import dev.kurykat.morematerials.MoreMaterialsConstants;
+import dev.kurykat.morematerials.MoreMaterials;
 import dev.kurykat.morematerials.infrastructure.worldgen.OreFeatureConfigEntry.DataGenExtension;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
@@ -34,16 +34,16 @@ import java.util.Map;
 
 public class MoreMaterialsBuiltinRegistration {
     private static final DeferredRegister<ConfiguredFeature<?, ?>> CONFIGURED_FEATURE_REGISTER = DeferredRegister
-            .create(Registry.CONFIGURED_FEATURE_REGISTRY, MoreMaterialsConstants.MOD_ID);
+            .create(Registry.CONFIGURED_FEATURE_REGISTRY, MoreMaterials.MOD_ID);
     private static final DeferredRegister<PlacedFeature> PLACED_FEATURE_REGISTER = DeferredRegister
-            .create(Registry.PLACED_FEATURE_REGISTRY, MoreMaterialsConstants.MOD_ID);
+            .create(Registry.PLACED_FEATURE_REGISTRY, MoreMaterials.MOD_ID);
     private static final DeferredRegister<BiomeModifier> BIOME_MODIFIER_REGISTER = DeferredRegister
-            .create(ForgeRegistries.Keys.BIOME_MODIFIERS, MoreMaterialsConstants.MOD_ID);
+            .create(ForgeRegistries.Keys.BIOME_MODIFIERS, MoreMaterials.MOD_ID);
 
     static {
         for (Map.Entry<ResourceLocation, OreFeatureConfigEntry> entry : OreFeatureConfigEntry.ALL.entrySet()) {
             ResourceLocation id = entry.getKey();
-            if (id.getNamespace().equals(MoreMaterialsConstants.MOD_ID)) {
+            if (id.getNamespace().equals(MoreMaterials.MOD_ID)) {
                 DataGenExtension dataGenExtension = entry.getValue().dataGenExtension();
                 if (dataGenExtension != null) {
                     CONFIGURED_FEATURE_REGISTER

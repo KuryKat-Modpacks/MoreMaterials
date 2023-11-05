@@ -18,7 +18,7 @@
 
 package dev.kurykat.morematerials.foundation.data.recipe;
 
-import dev.kurykat.morematerials.MoreMaterialsConstants;
+import dev.kurykat.morematerials.MoreMaterials;
 import dev.kurykat.morematerials.tags.MoreMaterialsTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -45,7 +45,7 @@ public abstract class MoreMaterialsRecipeProvider extends RecipeProvider {
     @Override
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
         ALL.forEach(generatedRecipe -> generatedRecipe.register(consumer));
-        MoreMaterialsConstants.LOGGER.info(getName() + " registered " + ALL.size() + " recipe" + (ALL.size() == 1 ? "" : "s"));
+        MoreMaterials.LOGGER.info(getName() + " registered " + ALL.size() + " recipe" + (ALL.size() == 1 ? "" : "s"));
     }
 
     protected GeneratedRecipe register(GeneratedRecipe recipe) {

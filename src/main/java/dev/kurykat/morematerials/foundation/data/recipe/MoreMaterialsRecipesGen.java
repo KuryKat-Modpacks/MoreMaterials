@@ -24,7 +24,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import dev.kurykat.morematerials.MoreMaterials;
-import dev.kurykat.morematerials.MoreMaterialsConstants;
 import dev.kurykat.morematerials.foundation.util.RegisteredObjects;
 import dev.kurykat.morematerials.registries.MoreMaterialsBlocks;
 import dev.kurykat.morematerials.registries.MoreMaterialsItems;
@@ -45,6 +44,7 @@ import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import net.minecraftforge.common.crafting.conditions.NotCondition;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -358,8 +358,8 @@ public class MoreMaterialsRecipesGen extends MoreMaterialsRecipeProvider {
     }
 
     @Override
-    public String getName() {
-        return MoreMaterialsConstants.MOD_NAME + super.getName();
+    public @NotNull String getName() {
+        return MoreMaterials.MOD_NAME + super.getName();
     }
 
     private static class ModdedCookingRecipeResult implements FinishedRecipe {

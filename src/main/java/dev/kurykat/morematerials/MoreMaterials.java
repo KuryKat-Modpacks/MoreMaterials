@@ -36,18 +36,25 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("unused")
-@Mod(MoreMaterialsConstants.MOD_ID)
+@Mod(MoreMaterials.MOD_ID)
 public class MoreMaterials {
-    private static final NonNullSupplier<Registrate> REGISTRATE = NonNullSupplier.lazy(() -> Registrate.create(MoreMaterialsConstants.MOD_ID));
+    public static final String MOD_ID = "morematerials";
+    public static final String MOD_NAME = "MoreMaterials";
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
+    public static final MoreMaterialsCreativeModeTab CREATIVE_TAB = new MoreMaterialsCreativeModeTab(MOD_ID);
+
+    private static final NonNullSupplier<Registrate> REGISTRATE = NonNullSupplier.lazy(() -> Registrate.create(MoreMaterials.MOD_ID));
 
     public static Registrate getRegistrate() {
         return REGISTRATE.get();
     }
 
     public MoreMaterials() {
-        MoreMaterialsConstants.LOGGER.info("{} is Starting! Hello World!", MoreMaterialsConstants.MOD_NAME);
+        LOGGER.info("{} is Starting! Hello World!", MOD_NAME);
         ModLoadingContext modLoadingContext = ModLoadingContext.get();
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
@@ -67,6 +74,6 @@ public class MoreMaterials {
     }
 
     public static ResourceLocation asResource(String path) {
-        return new ResourceLocation(MoreMaterialsConstants.MOD_ID, path);
+        return new ResourceLocation(MoreMaterials.MOD_ID, path);
     }
 }

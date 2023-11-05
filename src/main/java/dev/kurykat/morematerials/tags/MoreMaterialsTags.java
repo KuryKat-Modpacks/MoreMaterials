@@ -18,7 +18,7 @@
 
 package dev.kurykat.morematerials.tags;
 
-import dev.kurykat.morematerials.MoreMaterialsConstants;
+import dev.kurykat.morematerials.MoreMaterials;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -52,7 +52,7 @@ public class MoreMaterialsTags {
     }
 
     public enum Namespace {
-        MOD(MoreMaterialsConstants.MOD_ID, false, true),
+        MOD(MoreMaterials.MOD_ID, false, true),
         FORGE(ForgeVersion.MOD_ID);
 
         public final String id;

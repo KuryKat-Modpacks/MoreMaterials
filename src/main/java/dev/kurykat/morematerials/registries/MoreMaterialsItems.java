@@ -23,7 +23,6 @@ import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import dev.kurykat.morematerials.MoreMaterials;
-import dev.kurykat.morematerials.MoreMaterialsConstants;
 import dev.kurykat.morematerials.tags.MoreMaterialsItemTags;
 import dev.kurykat.morematerials.tags.MoreMaterialsTags;
 import net.minecraft.tags.TagKey;
@@ -33,7 +32,7 @@ public class MoreMaterialsItems {
     private static final Registrate REGISTRATE = MoreMaterials.getRegistrate();
 
     static {
-        REGISTRATE.creativeModeTab(() -> MoreMaterialsConstants.CREATIVE_TAB);
+        REGISTRATE.creativeModeTab(() -> MoreMaterials.CREATIVE_TAB);
     }
 
     public static final ItemEntry<Item> RUBY =
