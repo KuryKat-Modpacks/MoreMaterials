@@ -64,11 +64,18 @@ public class MoreMaterialsRecipesGen extends MoreMaterialsRecipeProvider {
             ImmutableList.of(I::celeslar, I::celeslarBlock)
     );
 
+    GeneratedRecipe RAW_CELESLAR_COMPACTING = materialCompacting(
+            ImmutableList.of(MoreMaterialsItems.RAW_CELESLAR, MoreMaterialsBlocks.RAW_CELESLAR_BLOCK),
+            ImmutableList.of(I::rawCeleslar, I::rawCeleslarBlock)
+    );
+
     private final Marker COOKING = enterFolder("/");
 
     GeneratedRecipe RUBY_ORE = blastOreTag(MoreMaterialsItems.RUBY::get, () -> MoreMaterialsTags.forgeItemTag("ores/ruby"));
 
     GeneratedRecipe CELESLAR_ORE = blastOreTag(MoreMaterialsItems.CELESLAR_INGOT::get, () -> MoreMaterialsTags.forgeItemTag("ores/celeslar"));
+
+    GeneratedRecipe RAW_CELESLAR_ORE = blastRawOreTag(MoreMaterialsItems.CELESLAR_INGOT::get, () -> MoreMaterialsTags.forgeItemTag("raw_materials/celeslar"));
 
     /*
      * End of recipe list

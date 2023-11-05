@@ -64,6 +64,9 @@ public class MoreMaterialsRegistrateTags {
         provider.tag(Tags.Items.INGOTS)
                 .addTag(MoreMaterialsItemTags.INGOTS.tag);
 
+        provider.tag(Tags.Items.RAW_MATERIALS)
+                .addTag(MoreMaterialsItemTags.RAW_MATERIALS.tag);
+
         // VALIDATE
 
         for (MoreMaterialsItemTags tag : MoreMaterialsItemTags.values()) {

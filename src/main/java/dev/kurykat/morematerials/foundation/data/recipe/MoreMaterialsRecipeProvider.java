@@ -70,6 +70,14 @@ public abstract class MoreMaterialsRecipeProvider extends RecipeProvider {
             return MoreMaterialsTags.forgeItemTag("storage_blocks/ruby");
         }
 
+        static TagKey<Item> rawCeleslar() {
+            return MoreMaterialsTags.forgeItemTag("raw_materials/celeslar");
+        }
+
+        static TagKey<Item> rawCeleslarBlock() {
+            return MoreMaterialsTags.forgeItemTag("storage_blocks/raw_celeslar");
+        }
+
         static TagKey<Item> celeslar() {
             return MoreMaterialsTags.forgeItemTag("ingots/celeslar");
         }

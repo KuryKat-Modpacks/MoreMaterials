@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "morematerials:block/ores/celeslar/deepslate"
+    "all": "morematerials:block/storage_blocks/raw_celeslar"
   }
 }

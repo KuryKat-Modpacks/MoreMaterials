@@ -28,6 +28,7 @@ import dev.kurykat.morematerials.tags.MoreMaterialsTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
+@SuppressWarnings({"unused", "SameParameterValue"})
 public class MoreMaterialsItems {
     private static final Registrate REGISTRATE = MoreMaterials.getRegistrate();
 
@@ -43,6 +44,11 @@ public class MoreMaterialsItems {
                     .properties(Item.Properties::fireResistant)
                     .register();
 
+    public static final ItemEntry<Item> RAW_CELESLAR =
+            createRawItem("celeslar", Item::new)
+                    .properties(Item.Properties::fireResistant)
+                    .register();
+
     private static <T extends Item> ItemBuilder<T, Registrate> createGemItem(String materialName, NonNullFunction<Item.Properties, T> itemFactory) {
         return createTaggedItem(materialName, itemFactory, MoreMaterialsTags.forgeItemTag("gems/" + materialName), MoreMaterialsItemTags.GEMS.tag)
                 .model((context, provider) -> provider.generated(context::get, MoreMaterials.asResource("item/gems/" + materialName)));
@@ -51,6 +57,11 @@ public class MoreMaterialsItems {
     private static <T extends Item> ItemBuilder<T, Registrate> createIngotItem(String materialName, NonNullFunction<Item.Properties, T> itemFactory) {
         return createTaggedItem(materialName + "_ingot", itemFactory, MoreMaterialsTags.forgeItemTag("ingots/" + materialName), MoreMaterialsItemTags.INGOTS.tag)
                 .model((context, provider) -> provider.generated(context::get, MoreMaterials.asResource("item/ingots/" + materialName)));
+    }
+
+    private static <T extends Item> ItemBuilder<T, Registrate> createRawItem(String materialName, NonNullFunction<Item.Properties, T> itemFactory) {
+        return createTaggedItem("raw_" + materialName, itemFactory, MoreMaterialsTags.forgeItemTag("raw_materials/" + materialName), MoreMaterialsItemTags.RAW_MATERIALS.tag)
+                .model((context, provider) -> provider.generated(context::get, MoreMaterials.asResource("item/raw_materials/" + materialName)));
     }
 
     @SafeVarargs

@@ -33,7 +33,8 @@ import static dev.kurykat.morematerials.tags.MoreMaterialsTags.optionalTag;
 
 public enum MoreMaterialsItemTags {
     GEMS,
-    INGOTS;
+    INGOTS,
+    RAW_MATERIALS;
 
     public final TagKey<Item> tag;
     public final boolean alwaysDataGen;

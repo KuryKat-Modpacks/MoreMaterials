@@ -36,14 +36,18 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.maven.artifact.versioning.ArtifactVersion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.text.MessageFormat;
 
 @SuppressWarnings("unused")
 @Mod(MoreMaterials.MOD_ID)
 public class MoreMaterials {
     public static final String MOD_ID = "morematerials";
     public static final String MOD_NAME = "MoreMaterials";
+    public static String VERSION;
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
     public static final MoreMaterialsCreativeModeTab CREATIVE_TAB = new MoreMaterialsCreativeModeTab(MOD_ID);
 
@@ -56,6 +60,13 @@ public class MoreMaterials {
     public MoreMaterials() {
         LOGGER.info("{} is Starting! Hello World!", MOD_NAME);
         ModLoadingContext modLoadingContext = ModLoadingContext.get();
+        VERSION = getVersion(
+                modLoadingContext
+                        .getActiveContainer()
+                        .getModInfo()
+                        .getVersion()
+        );
+        LOGGER.info("Version {} is now running!!", VERSION);
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 
@@ -74,6 +85,27 @@ public class MoreMaterials {
     }
 
     public static ResourceLocation asResource(String path) {
-        return new ResourceLocation(MoreMaterials.MOD_ID, path);
+        return new ResourceLocation(MOD_ID, path);
+    }
+
+    private static String getVersion(ArtifactVersion version) {
+        String versionQualifier = version.getQualifier();
+
+        if (versionQualifier != null) {
+            return MessageFormat.format(
+                    "{0}.{1}.{2}-{3}",
+                    version.getMajorVersion(),
+                    version.getMinorVersion(),
+                    version.getIncrementalVersion(),
+                    versionQualifier
+            );
+        }
+
+        return MessageFormat.format(
+                "{0}.{1}.{2}",
+                version.getMajorVersion(),
+                version.getMinorVersion(),
+                version.getIncrementalVersion()
+        );
     }
 }
