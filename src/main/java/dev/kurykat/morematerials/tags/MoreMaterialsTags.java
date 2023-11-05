@@ -73,5 +73,7 @@ public class MoreMaterialsTags {
     public static void init() {
         MoreMaterialsBlockTags.init();
         MoreMaterialsItemTags.init();
+        MoreMaterialsFluidTags.init();
+        MoreMaterialsEntityTags.init();
     }
 }

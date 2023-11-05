@@ -20,58 +20,55 @@ package dev.kurykat.morematerials.tags;
 
 import dev.kurykat.morematerials.foundation.util.Lang;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import static dev.kurykat.morematerials.tags.MoreMaterialsTags.Namespace;
 import static dev.kurykat.morematerials.tags.MoreMaterialsTags.Namespace.MOD;
 import static dev.kurykat.morematerials.tags.MoreMaterialsTags.optionalTag;
 
+public enum MoreMaterialsFluidTags {
+    ;
 
-public enum MoreMaterialsItemTags {
-    GEMS,
-    INGOTS;
-
-    public final TagKey<Item> tag;
+    public final TagKey<Fluid> tag;
     public final boolean alwaysDataGen;
 
-    MoreMaterialsItemTags() {
+    MoreMaterialsFluidTags() {
         this(MOD);
     }
 
-    MoreMaterialsItemTags(Namespace namespace) {
+    MoreMaterialsFluidTags(Namespace namespace) {
         this(namespace, namespace.optionalByDefault, namespace.alwaysDataGenByDefault);
     }
 
-    MoreMaterialsItemTags(Namespace namespace, String path) {
+    MoreMaterialsFluidTags(Namespace namespace, String path) {
         this(namespace, path, namespace.optionalByDefault, namespace.alwaysDataGenByDefault);
     }
 
-    MoreMaterialsItemTags(Namespace namespace, boolean optional, boolean alwaysDataGen) {
+    MoreMaterialsFluidTags(Namespace namespace, boolean optional, boolean alwaysDataGen) {
         this(namespace, null, optional, alwaysDataGen);
     }
 
-    MoreMaterialsItemTags(Namespace namespace, String path, boolean optional, boolean alwaysDataGen) {
+    MoreMaterialsFluidTags(Namespace namespace, String path, boolean optional, boolean alwaysDataGen) {
         ResourceLocation id = new ResourceLocation(namespace.id, path == null ? Lang.asId(name()) : path);
         if (optional) {
-            tag = optionalTag(ForgeRegistries.ITEMS, id);
+            tag = optionalTag(ForgeRegistries.FLUIDS, id);
         } else {
-            tag = ItemTags.create(id);
+            tag = FluidTags.create(id);
         }
         this.alwaysDataGen = alwaysDataGen;
     }
 
     @SuppressWarnings("deprecation")
-    public boolean matches(Item item) {
-        return item.builtInRegistryHolder()
-                .is(tag);
+    public boolean matches(Fluid fluid) {
+        return fluid.is(tag);
     }
 
-    public boolean matches(ItemStack stack) {
-        return stack.is(tag);
+    public boolean matches(FluidState state) {
+        return state.is(tag);
     }
 
     public static void init() {

@@ -43,7 +43,7 @@ public class MoreMaterialsOreFeatureConfigEntries {
             "ruby_ore", 12, 8, -63, 30
     )
             .standardDataGenExtension()
-            .withBlocks(Couple.create(MoreMaterialsBlocks.RUBY_BLOCK, MoreMaterialsBlocks.DEEPSLATE_RUBY_ORE))
+            .withBlocks(Couple.create(MoreMaterialsBlocks.RUBY_ORE, MoreMaterialsBlocks.DEEPSLATE_RUBY_ORE))
             .biomeTag(BiomeTags.IS_OVERWORLD)
             .parent();
 
