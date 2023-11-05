@@ -60,7 +60,7 @@ public class MoreMaterialsRecipesGen extends MoreMaterialsRecipeProvider {
     );
 
     GeneratedRecipe CELESLAR_COMPACTING = materialCompacting(
-            ImmutableList.of(MoreMaterialsItems.CELESLAR, MoreMaterialsBlocks.CELESLAR_BLOCK),
+            ImmutableList.of(MoreMaterialsItems.CELESLAR_INGOT, MoreMaterialsBlocks.CELESLAR_BLOCK),
             ImmutableList.of(I::celeslar, I::celeslarBlock)
     );
 
@@ -68,7 +68,7 @@ public class MoreMaterialsRecipesGen extends MoreMaterialsRecipeProvider {
 
     GeneratedRecipe RUBY_ORE = blastOreTag(MoreMaterialsItems.RUBY::get, () -> MoreMaterialsTags.forgeItemTag("ores/ruby"));
 
-    GeneratedRecipe CELESLAR_ORE = blastOreTag(MoreMaterialsItems.CELESLAR::get, () -> MoreMaterialsTags.forgeItemTag("ores/celeslar"));
+    GeneratedRecipe CELESLAR_ORE = blastOreTag(MoreMaterialsItems.CELESLAR_INGOT::get, () -> MoreMaterialsTags.forgeItemTag("ores/celeslar"));
 
     /*
      * End of recipe list

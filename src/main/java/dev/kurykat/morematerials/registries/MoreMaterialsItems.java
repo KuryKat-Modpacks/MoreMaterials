@@ -39,22 +39,22 @@ public class MoreMaterialsItems {
     public static final ItemEntry<Item> RUBY =
             createGemItem("ruby", Item::new)
                     .register();
-    public static final ItemEntry<Item> CELESLAR =
+    public static final ItemEntry<Item> CELESLAR_INGOT =
             createIngotItem("celeslar", Item::new)
                     .properties(Item.Properties::fireResistant)
                     .register();
 
-    private static <T extends Item> ItemBuilder<T, Registrate> createGemItem(String resourceName, NonNullFunction<Item.Properties, T> itemFactory) {
-        return createTaggedItem(resourceName, itemFactory, MoreMaterialsTags.forgeItemTag("gems/" + resourceName), MoreMaterialsItemTags.GEMS.tag)
+    private static <T extends Item> ItemBuilder<T, Registrate> createGemItem(String materialName, NonNullFunction<Item.Properties, T> itemFactory) {
+        return createTaggedItem(materialName, itemFactory, MoreMaterialsTags.forgeItemTag("gems/" + materialName), MoreMaterialsItemTags.GEMS.tag)
                 .model((context, provider) -> {
-                    provider.generated(context::get, MoreMaterials.asResource("item/gems/" + resourceName));
+                    provider.generated(context::get, MoreMaterials.asResource("item/gems/" + materialName));
                 });
     }
 
-    private static <T extends Item> ItemBuilder<T, Registrate> createIngotItem(String resourceName, NonNullFunction<Item.Properties, T> itemFactory) {
-        return createTaggedItem(resourceName + "_ingot", itemFactory, MoreMaterialsTags.forgeItemTag("ingots/" + resourceName), MoreMaterialsItemTags.INGOTS.tag)
+    private static <T extends Item> ItemBuilder<T, Registrate> createIngotItem(String materialName, NonNullFunction<Item.Properties, T> itemFactory) {
+        return createTaggedItem(materialName + "_ingot", itemFactory, MoreMaterialsTags.forgeItemTag("ingots/" + materialName), MoreMaterialsItemTags.INGOTS.tag)
                 .model((context, provider) -> {
-                    provider.generated(context::get, MoreMaterials.asResource("item/ingots/" + resourceName));
+                    provider.generated(context::get, MoreMaterials.asResource("item/ingots/" + materialName));
                 });
     }
 

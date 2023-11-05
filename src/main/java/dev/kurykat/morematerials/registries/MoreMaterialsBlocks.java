@@ -63,19 +63,14 @@ public class MoreMaterialsBlocks {
             Material.METAL, MaterialColor.COLOR_RED, SoundType.METAL
     ).register();
 
-    public static final BlockEntry<DropExperienceBlock> CELESLAR_ORE = createOreBlock(
-            "celeslar", OreTypes.STONE, properties -> new DropExperienceBlock(properties, UniformInt.of(3, 7)),
-            Material.STONE, MaterialColor.STONE, SoundType.STONE, MoreMaterialsItems.CELESLAR
-    ).item().properties(Item.Properties::fireResistant).build().register();
-
-    public static final BlockEntry<DropExperienceBlock> DEEPSLATE_CELESLAR_ORE = createOreBlock(
-            "celeslar", OreTypes.DEEPSLATE, properties -> new DropExperienceBlock(properties, UniformInt.of(3, 7)),
-            Material.STONE, MaterialColor.DEEPSLATE, SoundType.DEEPSLATE, MoreMaterialsItems.CELESLAR
+    public static final BlockEntry<DropExperienceBlock> END_CELESLAR_ORE = createOreBlock(
+            "celeslar", OreTypes.END, properties -> new DropExperienceBlock(properties, UniformInt.of(3, 7)),
+            Material.STONE, MaterialColor.SAND, SoundType.STONE, MoreMaterialsItems.CELESLAR_INGOT
     ).item().properties(Item.Properties::fireResistant).build().register();
 
     public static final BlockEntry<Block> CELESLAR_BLOCK = createStorageBlock(
             "celeslar", Block::new,
-            Material.METAL, MaterialColor.COLOR_BLUE, SoundType.METAL
+            Material.METAL, MaterialColor.LAPIS, SoundType.METAL
     ).item().properties(Item.Properties::fireResistant).build().register();
 
     private enum OreTypes {
@@ -86,7 +81,7 @@ public class MoreMaterialsBlocks {
     }
 
     private static <T extends Block> BlockBuilder<T, Registrate> createOreBlock(
-            String resourceName,
+            String materialName,
             OreTypes type,
             NonNullFunction<BlockBehaviour.Properties, T> blockFactory,
             Material material,
@@ -95,7 +90,7 @@ public class MoreMaterialsBlocks {
             ItemEntry<Item> itemDrop
     ) {
         String typeName = type.name().toLowerCase();
-        String blockNameSuffix = resourceName + "_ore";
+        String blockNameSuffix = materialName + "_ore";
         String blockName = type.equals(OreTypes.STONE) ? blockNameSuffix : typeName + "_" + blockNameSuffix;
         String groundTag = type.equals(OreTypes.DEEPSLATE) ? "ores_in_ground/deepslate"
                 : type.equals(OreTypes.NETHER) ? "ores_in_ground/netherrack"
@@ -121,7 +116,7 @@ public class MoreMaterialsBlocks {
                                 provider.models()
                                         .cubeAll(
                                                 context.getName(),
-                                                provider.modLoc("block/ores/" + resourceName + "/" + typeName)
+                                                provider.modLoc("block/ores/" + materialName + "/" + typeName)
                                         )
                         )
                 )
@@ -132,7 +127,7 @@ public class MoreMaterialsBlocks {
                 .tag(Tags.Blocks.ORES)
                 .transform(
                         tagBlockAndItem(
-                                "ores/" + resourceName,
+                                "ores/" + materialName,
                                 groundTag
                         )
                 )
@@ -141,14 +136,14 @@ public class MoreMaterialsBlocks {
     }
 
     private static <T extends Block> BlockBuilder<T, Registrate> createStorageBlock(
-            String resourceName,
+            String materialName,
             NonNullFunction<BlockBehaviour.Properties, T> blockFactory,
             Material material,
             MaterialColor materialColor,
             SoundType soundType
     ) {
         return REGISTRATE
-                .block(resourceName + "_block", blockFactory)
+                .block(materialName + "_block", blockFactory)
                 .initialProperties(material, materialColor)
                 .properties(properties -> properties
                         .strength(5.0F, 6.0F)
@@ -162,14 +157,14 @@ public class MoreMaterialsBlocks {
                                 provider.models()
                                         .cubeAll(
                                                 context.getName(),
-                                                provider.modLoc("block/storage_blocks/" + resourceName)
+                                                provider.modLoc("block/storage_blocks/" + materialName)
                                         )
                         )
                 )
                 .tag(BlockTags.NEEDS_IRON_TOOL)
                 .tag(Tags.Blocks.STORAGE_BLOCKS)
                 .tag(BlockTags.BEACON_BASE_BLOCKS)
-                .transform(tagBlockAndItem("storage_blocks/" + resourceName))
+                .transform(tagBlockAndItem("storage_blocks/" + materialName))
                 .tag(Tags.Items.STORAGE_BLOCKS)
                 .build();
     }

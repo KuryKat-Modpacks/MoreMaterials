@@ -47,8 +47,8 @@ public class MoreMaterialsOreFeatureConfigEntries {
 
     public static final OreFeatureConfigEntry CELESLAR_ORE = create("celeslar_ore", 8, 8, -63, 125)
             .standardDataGenExtension()
-            .withBlocks(Couple.create(MoreMaterialsBlocks.CELESLAR_ORE, MoreMaterialsBlocks.DEEPSLATE_CELESLAR_ORE))
-            .biomeTag(BiomeTags.IS_OVERWORLD)
+            .withEndBlock(MoreMaterialsBlocks.END_CELESLAR_ORE)
+            .biomeTag(BiomeTags.IS_END)
             .parent();
 
     private static OreFeatureConfigEntry create(String name, int clusterSize, float frequency, int minHeight, int maxHeight) {
