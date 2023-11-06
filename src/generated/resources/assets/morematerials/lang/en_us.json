@@ -1,7 +1,16 @@
 {
+  "block.morematerials.alexandrite_block": "Alexandrite Block",
+  "block.morematerials.alexandrite_ore": "Alexandrite Ore",
+  "block.morematerials.celeslar_block": "Celeslar Block",
+  "block.morematerials.deepslate_alexandrite_ore": "Deepslate Alexandrite Ore",
   "block.morematerials.deepslate_ruby_ore": "Deepslate Ruby Ore",
+  "block.morematerials.end_celeslar_ore": "End Celeslar Ore",
+  "block.morematerials.raw_celeslar_block": "Raw Celeslar Block",
   "block.morematerials.ruby_block": "Ruby Block",
   "block.morematerials.ruby_ore": "Ruby Ore",
+  "item.morematerials.alexandrite": "Alexandrite",
+  "item.morematerials.celeslar_ingot": "Celeslar Ingot",
+  "item.morematerials.raw_celeslar": "Raw Celeslar",
   "item.morematerials.ruby": "Ruby",
   "itemGroup.morematerials": "More Materials"
 }

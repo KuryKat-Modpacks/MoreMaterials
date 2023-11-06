@@ -18,7 +18,7 @@
 
 package dev.kurykat.morematerials.infrastructure.worldgen;
 
-import dev.kurykat.morematerials.MoreMaterialsConstants;
+import dev.kurykat.morematerials.MoreMaterials;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -26,7 +26,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class MoreMaterialsFeatures {
-    private static final DeferredRegister<Feature<?>> REGISTER = DeferredRegister.create(ForgeRegistries.FEATURES, MoreMaterialsConstants.MOD_ID);
+    private static final DeferredRegister<Feature<?>> REGISTER = DeferredRegister.create(ForgeRegistries.FEATURES, MoreMaterials.MOD_ID);
 
     public static final RegistryObject<StandardOreFeature> STANDARD_ORE = REGISTER.register("standard_ore", StandardOreFeature::new);
     public static final RegistryObject<LayeredOreFeature> LAYERED_ORE = REGISTER.register("layered_ore", LayeredOreFeature::new);

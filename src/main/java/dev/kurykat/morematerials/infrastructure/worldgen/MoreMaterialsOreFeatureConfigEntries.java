@@ -39,14 +39,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MoreMaterialsOreFeatureConfigEntries {
-    public static final OreFeatureConfigEntry RUBY_ORE = create(
-            "ruby_ore", 12, 8, -63, 30
-    )
+    public static final OreFeatureConfigEntry RUBY_ORE = create("ruby_ore", 8, 8, -63, 30)
             .standardDataGenExtension()
             .withBlocks(Couple.create(MoreMaterialsBlocks.RUBY_ORE, MoreMaterialsBlocks.DEEPSLATE_RUBY_ORE))
             .biomeTag(BiomeTags.IS_OVERWORLD)
             .parent();
 
+    public static final OreFeatureConfigEntry ALEXANDRITE_ORE = create("alexandrite_ore", 8, 8, -63, 128)
+            .standardDataGenExtension()
+            .withBlocks(Couple.create(MoreMaterialsBlocks.ALEXANDRITE_ORE, MoreMaterialsBlocks.DEEPSLATE_ALEXANDRITE_ORE))
+            .biomeTag(BiomeTags.IS_OVERWORLD)
+            .parent();
+
+    public static final OreFeatureConfigEntry CELESLAR_ORE = create("celeslar_ore", 8, 8, -63, 125)
+            .standardDataGenExtension()
+            .withEndBlock(MoreMaterialsBlocks.END_CELESLAR_ORE)
+            .biomeTag(BiomeTags.IS_END)
+            .parent();
 
     private static OreFeatureConfigEntry create(String name, int clusterSize, float frequency, int minHeight, int maxHeight) {
         ResourceLocation id = MoreMaterials.asResource(name);

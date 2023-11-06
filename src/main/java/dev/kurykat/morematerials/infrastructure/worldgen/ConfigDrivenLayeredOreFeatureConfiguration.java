@@ -24,19 +24,20 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import java.util.List;
 
 public class ConfigDrivenLayeredOreFeatureConfiguration extends BaseConfigDrivenOreFeatureConfiguration {
-    public static final Codec<ConfigDrivenLayeredOreFeatureConfiguration> CODEC = RecordCodecBuilder.create(instance -> {
-        return instance.group(
-                OreFeatureConfigEntry.CODEC
-                        .fieldOf("entry")
-                        .forGetter(config -> config.entry),
-                Codec.floatRange(0.0F, 1.0F)
-                        .fieldOf("discard_chance_on_air_exposure")
-                        .forGetter(config -> config.discardChanceOnAirExposure),
-                Codec.list(LayerPattern.CODEC)
-                        .fieldOf("layer_patterns")
-                        .forGetter(config -> config.layerPatterns)
-        ).apply(instance, ConfigDrivenLayeredOreFeatureConfiguration::new);
-    });
+    public static final Codec<ConfigDrivenLayeredOreFeatureConfiguration> CODEC = RecordCodecBuilder.create(
+            instance -> instance
+                    .group(
+                            OreFeatureConfigEntry.CODEC
+                                    .fieldOf("entry")
+                                    .forGetter(config -> config.entry),
+                            Codec.floatRange(0.0F, 1.0F)
+                                    .fieldOf("discard_chance_on_air_exposure")
+                                    .forGetter(config -> config.discardChanceOnAirExposure),
+                            Codec.list(LayerPattern.CODEC)
+                                    .fieldOf("layer_patterns")
+                                    .forGetter(config -> config.layerPatterns)
+                    ).apply(instance, ConfigDrivenLayeredOreFeatureConfiguration::new)
+    );
 
     private final List<LayerPattern> layerPatterns;
 

@@ -1,5 +1,8 @@
 {
   "values": [
-    "morematerials:ruby_block"
+    "morematerials:ruby_block",
+    "morematerials:alexandrite_block",
+    "morematerials:celeslar_block",
+    "morematerials:raw_celeslar_block"
   ]
 }

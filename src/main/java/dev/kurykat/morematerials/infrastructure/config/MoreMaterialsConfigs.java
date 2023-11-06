@@ -18,7 +18,7 @@
 
 package dev.kurykat.morematerials.infrastructure.config;
 
-import dev.kurykat.morematerials.MoreMaterialsConstants;
+import dev.kurykat.morematerials.MoreMaterials;
 import dev.kurykat.morematerials.foundation.config.BaseConfig;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -32,7 +32,7 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-@Mod.EventBusSubscriber(modid = MoreMaterialsConstants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = MoreMaterials.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class MoreMaterialsConfigs {
     private static final Map<ModConfig.Type, BaseConfig> CONFIGS = new EnumMap<>(ModConfig.Type.class);
 

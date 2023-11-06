@@ -18,7 +18,7 @@
 
 package dev.kurykat.morematerials.infrastructure.config;
 
-import dev.kurykat.morematerials.MoreMaterialsConstants;
+import dev.kurykat.morematerials.MoreMaterials;
 import dev.kurykat.morematerials.foundation.config.BaseConfig;
 import dev.kurykat.morematerials.infrastructure.worldgen.MoreMaterialsOreFeatureConfigEntries;
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -31,7 +31,7 @@ public class MoreMaterialsWorldGenConfig extends BaseConfig {
     @Override
     public void registerAll(ForgeConfigSpec.Builder builder) {
         super.registerAll(builder);
-        MoreMaterialsOreFeatureConfigEntries.fillConfig(builder, MoreMaterialsConstants.MOD_ID);
+        MoreMaterialsOreFeatureConfigEntries.fillConfig(builder, MoreMaterials.MOD_ID);
     }
 
     @Override

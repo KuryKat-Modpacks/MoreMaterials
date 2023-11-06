@@ -1,7 +1,16 @@
 {
+  "block.morematerials.alexandrite_block": "ʞɔoןᗺ ǝʇıɹpuɐxǝןⱯ",
+  "block.morematerials.alexandrite_ore": "ǝɹO ǝʇıɹpuɐxǝןⱯ",
+  "block.morematerials.celeslar_block": "ʞɔoןᗺ ɹɐןsǝןǝƆ",
+  "block.morematerials.deepslate_alexandrite_ore": "ǝɹO ǝʇıɹpuɐxǝןⱯ ǝʇɐןsdǝǝᗡ",
   "block.morematerials.deepslate_ruby_ore": "ǝɹO ʎqnᴚ ǝʇɐןsdǝǝᗡ",
+  "block.morematerials.end_celeslar_ore": "ǝɹO ɹɐןsǝןǝƆ puƎ",
+  "block.morematerials.raw_celeslar_block": "ʞɔoןᗺ ɹɐןsǝןǝƆ ʍɐᴚ",
   "block.morematerials.ruby_block": "ʞɔoןᗺ ʎqnᴚ",
   "block.morematerials.ruby_ore": "ǝɹO ʎqnᴚ",
+  "item.morematerials.alexandrite": "ǝʇıɹpuɐxǝןⱯ",
+  "item.morematerials.celeslar_ingot": "ʇobuI ɹɐןsǝןǝƆ",
+  "item.morematerials.raw_celeslar": "ɹɐןsǝןǝƆ ʍɐᴚ",
   "item.morematerials.ruby": "ʎqnᴚ",
   "itemGroup.morematerials": "sןɐıɹǝʇɐW ǝɹoW"
 }

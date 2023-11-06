@@ -22,7 +22,7 @@ import com.google.gson.JsonElement;
 import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.Encoder;
 import com.mojang.serialization.JsonOps;
-import dev.kurykat.morematerials.MoreMaterialsConstants;
+import dev.kurykat.morematerials.MoreMaterials;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.data.CachedOutput;
@@ -82,14 +82,14 @@ public class DynamicDataProvider<T> implements DataProvider {
 
     private void dumpValue(Path path, CachedOutput cache, DynamicOps<JsonElement> ops, Encoder<T> encoder, T value) {
         try {
-            Optional<JsonElement> optional = encoder.encodeStart(ops, value).resultOrPartial((message) -> {
-                MoreMaterialsConstants.LOGGER.error("Couldn't serialize element {}: {}", path, message);
-            });
+            Optional<JsonElement> optional = encoder.encodeStart(ops, value).resultOrPartial(
+                    (message) -> MoreMaterials.LOGGER.error("Couldn't serialize element {}: {}", path, message)
+            );
             if (optional.isPresent()) {
                 DataProvider.saveStable(cache, optional.get(), path);
             }
         } catch (IOException e) {
-            MoreMaterialsConstants.LOGGER.error("Couldn't save element {}", path, e);
+            MoreMaterials.LOGGER.error("Couldn't save element {}", path, e);
         }
     }
 

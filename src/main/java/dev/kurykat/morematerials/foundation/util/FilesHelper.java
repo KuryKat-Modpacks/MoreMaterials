@@ -23,7 +23,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.internal.Streams;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import dev.kurykat.morematerials.MoreMaterialsConstants;
+import dev.kurykat.morematerials.MoreMaterials;
 import net.minecraft.nbt.CompoundTag;
 
 import java.io.BufferedReader;
@@ -41,7 +41,7 @@ public class FilesHelper {
         try {
             Files.createDirectories(Paths.get(name));
         } catch (IOException e) {
-            MoreMaterialsConstants.LOGGER.warn("Could not create Folder: {}", name);
+            MoreMaterials.LOGGER.warn("Could not create Folder: {}", name);
         }
     }
 

@@ -24,7 +24,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import dev.kurykat.morematerials.MoreMaterials;
-import dev.kurykat.morematerials.MoreMaterialsConstants;
 import dev.kurykat.morematerials.foundation.util.RegisteredObjects;
 import dev.kurykat.morematerials.registries.MoreMaterialsBlocks;
 import dev.kurykat.morematerials.registries.MoreMaterialsItems;
@@ -45,6 +44,7 @@ import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import net.minecraftforge.common.crafting.conditions.NotCondition;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,9 +59,30 @@ public class MoreMaterialsRecipesGen extends MoreMaterialsRecipeProvider {
             ImmutableList.of(I::ruby, I::rubyBlock)
     );
 
+    GeneratedRecipe ALEXANDRITE_COMPACTING = materialCompacting(
+            ImmutableList.of(MoreMaterialsItems.ALEXANDRITE, MoreMaterialsBlocks.ALEXANDRITE_BLOCK),
+            ImmutableList.of(I::alexandrite, I::alexandriteBlock)
+    );
+
+    GeneratedRecipe CELESLAR_COMPACTING = materialCompacting(
+            ImmutableList.of(MoreMaterialsItems.CELESLAR_INGOT, MoreMaterialsBlocks.CELESLAR_BLOCK),
+            ImmutableList.of(I::celeslar, I::celeslarBlock)
+    );
+
+    GeneratedRecipe RAW_CELESLAR_COMPACTING = materialCompacting(
+            ImmutableList.of(MoreMaterialsItems.RAW_CELESLAR, MoreMaterialsBlocks.RAW_CELESLAR_BLOCK),
+            ImmutableList.of(I::rawCeleslar, I::rawCeleslarBlock)
+    );
+
     private final Marker COOKING = enterFolder("/");
 
     GeneratedRecipe RUBY_ORE = blastOreTag(MoreMaterialsItems.RUBY::get, () -> MoreMaterialsTags.forgeItemTag("ores/ruby"));
+
+    GeneratedRecipe ALEXANDRITE_ORE = blastOreTag(MoreMaterialsItems.ALEXANDRITE::get, () -> MoreMaterialsTags.forgeItemTag("ores/alexandrite"));
+
+    GeneratedRecipe CELESLAR_ORE = blastOreTag(MoreMaterialsItems.CELESLAR_INGOT::get, () -> MoreMaterialsTags.forgeItemTag("ores/celeslar"));
+
+    GeneratedRecipe RAW_CELESLAR_ORE = blastRawOreTag(MoreMaterialsItems.CELESLAR_INGOT::get, () -> MoreMaterialsTags.forgeItemTag("raw_materials/celeslar"));
 
     /*
      * End of recipe list
@@ -332,13 +353,11 @@ public class MoreMaterialsRecipesGen extends MoreMaterialsRecipeProvider {
                         subBuilder.unlockedBy("has_item", inventoryTrigger(unlockedBy.get()));
                     }
                     subBuilder.save(
-                            result -> {
-                                consumer.accept(
-                                        isOtherMod ?
-                                                new ModdedCookingRecipeResult(result, compatDataGenOutput, recipeConditions)
-                                                : result
-                                );
-                            },
+                            result -> consumer.accept(
+                                    isOtherMod ?
+                                            new ModdedCookingRecipeResult(result, compatDataGenOutput, recipeConditions)
+                                            : result
+                            ),
                             createSimpleLocation(
                                     RegisteredObjects.getKeyOrThrow(serializer).getPath()
                             )
@@ -353,8 +372,8 @@ public class MoreMaterialsRecipesGen extends MoreMaterialsRecipeProvider {
     }
 
     @Override
-    public String getName() {
-        return MoreMaterialsConstants.MOD_NAME + super.getName();
+    public @NotNull String getName() {
+        return MoreMaterials.MOD_NAME + super.getName();
     }
 
     private static class ModdedCookingRecipeResult implements FinishedRecipe {

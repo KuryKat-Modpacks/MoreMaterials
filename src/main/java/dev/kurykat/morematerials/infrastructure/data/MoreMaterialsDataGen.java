@@ -23,7 +23,6 @@ import com.google.gson.JsonObject;
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.providers.ProviderType;
 import dev.kurykat.morematerials.MoreMaterials;
-import dev.kurykat.morematerials.MoreMaterialsConstants;
 import dev.kurykat.morematerials.foundation.data.recipe.MoreMaterialsRecipesGen;
 import dev.kurykat.morematerials.foundation.util.FilesHelper;
 import net.minecraft.data.DataGenerator;
@@ -61,7 +60,7 @@ public class MoreMaterialsDataGen {
     }
 
     private static void provideDefaultLang(String fileName, BiConsumer<String, String> consumer) {
-        String path = "assets/" + MoreMaterialsConstants.MOD_ID + "/lang/default/" + fileName + ".json";
+        String path = "assets/" + MoreMaterials.MOD_ID + "/lang/default/" + fileName + ".json";
         JsonElement jsonElement = FilesHelper.loadJsonResource(path);
         if (jsonElement == null) {
             throw new IllegalStateException(String.format("Could not find default lang file: %s", path));
