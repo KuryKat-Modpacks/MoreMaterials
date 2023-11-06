@@ -62,6 +62,16 @@ public class MoreMaterialsBlocks {
             Material.METAL, MaterialColor.COLOR_RED, SoundType.METAL
     ).register();
 
+    public static final BlockEntry<DropExperienceBlock> ALEXANDRITE_ORE = createOreBlock(
+            "alexandrite", OreTypes.STONE, properties -> new DropExperienceBlock(properties, UniformInt.of(3, 7)),
+            Material.STONE, MaterialColor.STONE, SoundType.STONE, MoreMaterialsItems.ALEXANDRITE
+    ).register();
+
+    public static final BlockEntry<DropExperienceBlock> DEEPSLATE_ALEXANDRITE_ORE = createOreBlock(
+            "alexandrite", OreTypes.DEEPSLATE, properties -> new DropExperienceBlock(properties, UniformInt.of(3, 7)),
+            Material.STONE, MaterialColor.DEEPSLATE, SoundType.DEEPSLATE, MoreMaterialsItems.ALEXANDRITE
+    ).register();
+
     public static final BlockEntry<Block> ALEXANDRITE_BLOCK = createStorageBlock(
             "alexandrite", Block::new,
             Material.METAL, MaterialColor.COLOR_CYAN, SoundType.METAL

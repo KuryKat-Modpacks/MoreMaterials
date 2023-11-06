@@ -2,6 +2,8 @@
   "values": [
     "morematerials:ruby_ore",
     "morematerials:deepslate_ruby_ore",
+    "morematerials:alexandrite_ore",
+    "morematerials:deepslate_alexandrite_ore",
     "morematerials:end_celeslar_ore"
   ]
 }

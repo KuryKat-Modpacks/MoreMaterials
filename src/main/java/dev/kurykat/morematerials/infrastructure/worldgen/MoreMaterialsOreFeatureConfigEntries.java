@@ -45,6 +45,12 @@ public class MoreMaterialsOreFeatureConfigEntries {
             .biomeTag(BiomeTags.IS_OVERWORLD)
             .parent();
 
+    public static final OreFeatureConfigEntry ALEXANDRITE_ORE = create("alexandrite_ore", 8, 8, -63, 128)
+            .standardDataGenExtension()
+            .withBlocks(Couple.create(MoreMaterialsBlocks.ALEXANDRITE_ORE, MoreMaterialsBlocks.DEEPSLATE_ALEXANDRITE_ORE))
+            .biomeTag(BiomeTags.IS_OVERWORLD)
+            .parent();
+
     public static final OreFeatureConfigEntry CELESLAR_ORE = create("celeslar_ore", 8, 8, -63, 125)
             .standardDataGenExtension()
             .withEndBlock(MoreMaterialsBlocks.END_CELESLAR_ORE)
