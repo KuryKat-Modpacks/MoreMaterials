@@ -59,6 +59,11 @@ public class MoreMaterialsRecipesGen extends MoreMaterialsRecipeProvider {
             ImmutableList.of(I::ruby, I::rubyBlock)
     );
 
+    GeneratedRecipe ALEXANDRITE_COMPACTING = materialCompacting(
+            ImmutableList.of(MoreMaterialsItems.ALEXANDRITE, MoreMaterialsBlocks.ALEXANDRITE_BLOCK),
+            ImmutableList.of(I::alexandrite, I::alexandriteBlock)
+    );
+
     GeneratedRecipe CELESLAR_COMPACTING = materialCompacting(
             ImmutableList.of(MoreMaterialsItems.CELESLAR_INGOT, MoreMaterialsBlocks.CELESLAR_BLOCK),
             ImmutableList.of(I::celeslar, I::celeslarBlock)
@@ -72,6 +77,8 @@ public class MoreMaterialsRecipesGen extends MoreMaterialsRecipeProvider {
     private final Marker COOKING = enterFolder("/");
 
     GeneratedRecipe RUBY_ORE = blastOreTag(MoreMaterialsItems.RUBY::get, () -> MoreMaterialsTags.forgeItemTag("ores/ruby"));
+
+    GeneratedRecipe ALEXANDRITE_ORE = blastOreTag(MoreMaterialsItems.ALEXANDRITE::get, () -> MoreMaterialsTags.forgeItemTag("ores/alexandrite"));
 
     GeneratedRecipe CELESLAR_ORE = blastOreTag(MoreMaterialsItems.CELESLAR_INGOT::get, () -> MoreMaterialsTags.forgeItemTag("ores/celeslar"));
 

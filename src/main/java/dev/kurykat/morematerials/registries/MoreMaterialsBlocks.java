@@ -62,6 +62,11 @@ public class MoreMaterialsBlocks {
             Material.METAL, MaterialColor.COLOR_RED, SoundType.METAL
     ).register();
 
+    public static final BlockEntry<Block> ALEXANDRITE_BLOCK = createStorageBlock(
+            "alexandrite", Block::new,
+            Material.METAL, MaterialColor.COLOR_CYAN, SoundType.METAL
+    ).register();
+
     public static final BlockEntry<Block> END_CELESLAR_ORE = createOreBlock(
             "celeslar", OreTypes.END, Block::new,
             Material.STONE, MaterialColor.SAND, SoundType.STONE, MoreMaterialsItems.RAW_CELESLAR

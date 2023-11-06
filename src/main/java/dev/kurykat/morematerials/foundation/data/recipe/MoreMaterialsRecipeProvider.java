@@ -23,13 +23,8 @@ import dev.kurykat.morematerials.tags.MoreMaterialsTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.ItemLike;
-import net.minecraftforge.common.Tags;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +65,14 @@ public abstract class MoreMaterialsRecipeProvider extends RecipeProvider {
             return MoreMaterialsTags.forgeItemTag("storage_blocks/ruby");
         }
 
+        static TagKey<Item> alexandrite() {
+            return MoreMaterialsTags.forgeItemTag("gems/alexandrite");
+        }
+
+        static TagKey<Item> alexandriteBlock() {
+            return MoreMaterialsTags.forgeItemTag("storage_blocks/alexandrite");
+        }
+
         static TagKey<Item> rawCeleslar() {
             return MoreMaterialsTags.forgeItemTag("raw_materials/celeslar");
         }
@@ -84,50 +87,6 @@ public abstract class MoreMaterialsRecipeProvider extends RecipeProvider {
 
         static TagKey<Item> celeslarBlock() {
             return MoreMaterialsTags.forgeItemTag("storage_blocks/celeslar");
-        }
-
-        static TagKey<Item> redstone() {
-            return Tags.Items.DUSTS_REDSTONE;
-        }
-
-        static TagKey<Item> planks() {
-            return ItemTags.PLANKS;
-        }
-
-        static TagKey<Item> woodSlab() {
-            return ItemTags.WOODEN_SLABS;
-        }
-
-        static TagKey<Item> stone() {
-            return Tags.Items.STONE;
-        }
-
-        static TagKey<Item> gold() {
-            return Tags.Items.INGOTS_GOLD;
-        }
-
-        static TagKey<Item> goldNugget() {
-            return Tags.Items.NUGGETS_GOLD;
-        }
-
-        static TagKey<Item> iron() {
-            return Tags.Items.INGOTS_IRON;
-        }
-
-        static TagKey<Item> ironNugget() {
-            return Tags.Items.NUGGETS_IRON;
-        }
-
-        static ItemLike copperBlock() {
-            return Items.COPPER_BLOCK;
-        }
-
-        static ItemLike copper() {
-            return Items.COPPER_INGOT;
-        }
-
-        static Ingredient netherite() {
-            return Ingredient.of(MoreMaterialsTags.forgeItemTag("ingots/netherite"));
         }
     }
 }

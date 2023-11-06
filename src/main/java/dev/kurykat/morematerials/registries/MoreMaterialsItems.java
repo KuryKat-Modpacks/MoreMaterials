@@ -39,6 +39,11 @@ public class MoreMaterialsItems {
     public static final ItemEntry<Item> RUBY =
             createGemItem("ruby", Item::new)
                     .register();
+
+    public static final ItemEntry<Item> ALEXANDRITE =
+            createGemItem("alexandrite", Item::new)
+                    .register();
+
     public static final ItemEntry<Item> CELESLAR_INGOT =
             createIngotItem("celeslar", Item::new)
                     .properties(Item.Properties::fireResistant)
